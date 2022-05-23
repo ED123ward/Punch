@@ -106,6 +106,7 @@ const LinkTextBlock = styled.div`
 
 const LinkIcon = styled.img`
   width: 0.3rem;
+  cursor: pointer;
 `;
 
 const LinkText = styled.div`

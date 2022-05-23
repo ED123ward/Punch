@@ -115,6 +115,7 @@ const NavButtonIcon = styled.img`
   margin: 0 0.2rem;
   width: 0.23rem;
   height: 0.2rem;
+  cursor: pointer;
 `;
 
 const NavButtonLine = styled.img`
