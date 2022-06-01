@@ -27,7 +27,9 @@ const Nft: React.FC = () => {
         <NftTitle>PUNCH NFTs</NftTitle>
         <NftBody>
           <NftLeft>
-            <NftImg src={NftCard1} />
+            <NftVideoBlock>
+              <NftVideo autoPlay loop muted src="./Punchnft.mp4" />
+            </NftVideoBlock>
           </NftLeft>
           <NftRight>
             <NftTextBlock>
@@ -138,6 +140,21 @@ const NftRight = styled.div`
 
 const NftImg = styled.img`
   width: 4.2rem;
+  height: 5.44rem;
+  margin-top: 0.99rem;
+  position: absolute;
+  right: 0.83rem;
+`;
+const NftVideoBlock = styled.div`
+  /* overflow: hidden;
+  width: 4.2rem;
+  height: 5.44rem;
+  position: absolute;
+  right: 0.83rem; */
+`;
+
+const NftVideo = styled.video`
+  /* width: 4.2rem; */
   height: 5.44rem;
   margin-top: 0.99rem;
   position: absolute;

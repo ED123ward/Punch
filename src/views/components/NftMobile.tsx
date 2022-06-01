@@ -22,7 +22,8 @@ const Nft: React.FC = () => {
     <>
       <NftBlock>
         <NftTitle>PUNCH NFTs</NftTitle>
-        <NftImg src={NftCard1} />
+        <NftVideo autoPlay loop muted src="./Punchnft.mp4" />
+        {/* <NftImg src={NftCard1} /> */}
         <NftText>
           <p>
             Punch NFTs are an essential part of the platform’s tokenomics.
@@ -115,6 +116,12 @@ const NftImg = styled.img`
   display: block;
   margin: 0.83rem auto 0 auto;
 `;
+const NftVideo = styled.video`
+  width: 5.08rem;
+  height: 5.45rem;
+  display: block;
+  margin: 0.83rem auto 0 auto;
+`
 
 const NftButton = styled.div`
   width: 1.9rem;

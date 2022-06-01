@@ -27,10 +27,10 @@ const Footer: React.FC = () => {
               <LinkIcon onClick={goPage} value={'https://t.co/jXQ5tJC75s'} src={LinkIcon3} />
               <LinkIcon onClick={goPage} value={'https://medium.com/@Punch__Games'} src={LinkIcon4} />
             </LinkIconBlock>
-            <LinkTextBlock>
+            {/* <LinkTextBlock>
               <LinkText>Privacy Policy</LinkText>
               <LinkText>Privacy Policy</LinkText>
-            </LinkTextBlock>
+            </LinkTextBlock> */}
           </LinkBlock>
 
           <DownBlock>

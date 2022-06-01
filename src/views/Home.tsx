@@ -26,7 +26,7 @@ const Home: FC = () => {
       <Head></Head>
       <Download></Download>
       <div id="NFTs"></div>
-      {/* <Nft></Nft> */}
+      <Nft></Nft>
       <div id={"Game"}></div>
       <Game></Game>
       <Join></Join>
