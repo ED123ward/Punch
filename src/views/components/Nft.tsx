@@ -146,19 +146,21 @@ const NftImg = styled.img`
   right: 0.83rem;
 `;
 const NftVideoBlock = styled.div`
-  /* overflow: hidden;
+  overflow: hidden;
+  margin-top: 0.99rem;
   width: 4.2rem;
   height: 5.44rem;
   position: absolute;
-  right: 0.83rem; */
+  right: 0.83rem;
+  border-radius: 0.4rem;
 `;
 
 const NftVideo = styled.video`
   /* width: 4.2rem; */
   height: 5.44rem;
-  margin-top: 0.99rem;
-  position: absolute;
-  right: 0.83rem;
+  position: relative;
+  left: -0.55rem;
+
 `;
 
 const NftTextBlock = styled.div`
