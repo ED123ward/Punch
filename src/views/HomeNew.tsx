@@ -5,17 +5,17 @@ import styled from "styled-components";
 import LogoImg from "./components/assets/homeNew/logoImg.png";
 import HeadText from "./components/assets/homeNew/headText.png";
 import HeadButton from "./components/assets/homeNew/button.png";
-import HeadBackground from "./components/assets/homeNew/headBackground.png"
+import HeadBackground from "./components/assets/homeNew/headBackground.png";
 
 import HomeMobileNew from "./HomeMobileNew";
 
 export default class HomeNew extends Component {
   state = {};
 
-  goWeb = ()=>{
-    const url = 'https://forms.gle/jkNPfDQPxtYqzcFf8'
-    window.open(url)
-  }
+  goWeb = () => {
+    const url = "https://forms.gle/jkNPfDQPxtYqzcFf8";
+    window.open(url);
+  };
 
   render() {
     const ua = navigator.userAgent;
@@ -31,7 +31,7 @@ export default class HomeNew extends Component {
     return (
       <>
         <PageBox>
-          <VideoBox autoPlay loop muted src="https://burningstar-popshots.s3.us-west-1.amazonaws.com/punch/publicize-video-1.mp4" />
+          <VideoBox autoPlay loop muted src="./box.mp4" />
         </PageBox>
         <HeadBackgroundBlock src={HeadBackground} />
         <HeadBlock>
@@ -41,12 +41,16 @@ export default class HomeNew extends Component {
           <BodyBlock>
             <BodyLeft>
               <LeftText src={HeadText} />
-              <LeftBUtton onClick={()=>{this.goWeb()}} src={HeadButton} />
+              <LeftBUtton
+                onClick={() => {
+                  this.goWeb();
+                }}
+                src={HeadButton}
+              />
             </BodyLeft>
             <BodyRight></BodyRight>
           </BodyBlock>
         </HeadBlock>
-       
       </>
     );
   }
@@ -75,11 +79,11 @@ const HeadBlock = styled.div`
 `;
 
 const NavBlock = styled.div`
-   margin-top: 0.76rem;
-   margin-left: 0.42rem;
+  margin-top: 0.29rem;
+  margin-left: 0.42rem;
 `;
 const LogoBlock = styled.img`
-  height: 0.5rem;
+  height: 0.57rem;
 `;
 
 const BodyBlock = styled.div`
@@ -98,7 +102,7 @@ const LeftText = styled.img`
   width: 5.6rem;
   position: relative;
   left: 0.42rem;
-  margin-top: 0.15rem;
+  margin-top: 0.84rem;
 `;
 const LeftBUtton = styled.img`
   width: 2.34rem;
@@ -115,7 +119,6 @@ const VideoBlock = styled.video`
 const HeadBackgroundBlock = styled.img`
   position: absolute;
   width: 6.24rem;
-  top: 0.55rem ;
+  top: 0.55rem;
   left: 0.45rem;
-  
-`
+`;

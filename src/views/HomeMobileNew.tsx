@@ -25,8 +25,8 @@ export default class HomeMobileNew extends Component {
         <PageBlock>
           <LogoBlock src={LogoImg} />
           <TextBlock src={HeadText} />
-          {/* <VideoBlock autoPlay loop muted src="./box.mp4" /> */}
-          <BuildBlock src={BuildingBlocks} />
+          <VideoBlock autoPlay loop muted src="./box_mobile.mp4" />
+          {/* <BuildBlock src={BuildingBlocks} /> */}
           <ButtonBlock
             onClick={() => {
               this.goWeb();
@@ -54,8 +54,9 @@ const TextBlock = styled.img`
   margin: 0.19rem auto 0 auto;
 `;
 
-const VideoBlock = styled.div`
-  margin-top: 0.66rem;
+const VideoBlock = styled.video`
+display: block;
+  margin: 0.66rem auto 0 auto;
   height: 6.08rem;
 `;
 
