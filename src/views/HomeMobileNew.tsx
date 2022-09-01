@@ -21,11 +21,13 @@ export default class HomeMobileNew extends Component {
   render() {
     return (
       <>
+       
+        <VideoBlock autoPlay loop muted src="./box_mobile.mp4" />
         <HeadBackgroundBlock src={HeadBackground} />
         <PageBlock>
           <LogoBlock src={LogoImg} />
           <TextBlock src={HeadText} />
-          <VideoBlock autoPlay loop muted src="./box_mobile.mp4" />
+        
           {/* <BuildBlock src={BuildingBlocks} /> */}
           <ButtonBlock
             onClick={() => {
@@ -46,24 +48,30 @@ const LogoBlock = styled.img`
   position: relative;
   height: 0.6rem;
   margin: 1.85rem 0.35rem 0 0.98rem;
+  z-index: 9;
 `;
 
 const TextBlock = styled.img`
   height: 1.4rem;
   display: block;
   margin: 0.19rem auto 0 auto;
+  z-index: 99;
+
 `;
 
 const VideoBlock = styled.video`
 display: block;
-  margin: 0.66rem auto 0 auto;
-  height: 6.08rem;
+  margin: 0rem auto 0 auto;
+  width: 100%;
+  position: absolute;
+  top: 2.5rem;
 `;
 
 const ButtonBlock = styled.img`
   width: 4.8rem;
   display: block;
-  margin: 0.72rem auto 0 auto;
+
+  margin: 7.6rem auto 0 auto;
 `;
 
 const Cloud1Block = styled.img`
