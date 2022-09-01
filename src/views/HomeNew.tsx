@@ -16,6 +16,10 @@ export default class HomeNew extends Component {
     const url = "https://forms.gle/jkNPfDQPxtYqzcFf8";
     window.open(url);
   };
+  goPDF = () =>{
+    const url = "./Punch Games TOS.pdf"
+    window.open(url);
+  }
 
   render() {
     const ua = navigator.userAgent;
@@ -31,7 +35,12 @@ export default class HomeNew extends Component {
     return (
       <>
         <PageBox>
-          <VideoBox autoPlay loop muted src="https://burningstar-popshots.s3.us-west-1.amazonaws.com/punch/publicize-video-1.mp4" />
+          <VideoBox
+            autoPlay
+            loop
+            muted
+            src="https://burningstar-popshots.s3.us-west-1.amazonaws.com/punch/publicize-video-1.mp4"
+          />
         </PageBox>
         <HeadBackgroundBlock src={HeadBackground} />
         <HeadBlock>
@@ -50,6 +59,13 @@ export default class HomeNew extends Component {
             </BodyLeft>
             <BodyRight></BodyRight>
           </BodyBlock>
+          <TermsBlock
+            onClick={() => {
+              this.goPDF();
+            }}
+          >
+            Terms & Conditions of Service
+          </TermsBlock>
         </HeadBlock>
       </>
     );
@@ -121,4 +137,13 @@ const HeadBackgroundBlock = styled.img`
   width: 6.24rem;
   top: 0.55rem;
   left: 0.45rem;
+`;
+
+const TermsBlock = styled.div`
+  position: absolute;
+  bottom: 0.5rem;
+  width: calc(14.4rem - 3rem);
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.12rem;
 `;

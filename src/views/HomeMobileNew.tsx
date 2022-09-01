@@ -17,6 +17,10 @@ export default class HomeMobileNew extends Component {
     const url = "https://forms.gle/jkNPfDQPxtYqzcFf8";
     window.open(url);
   };
+  goPDF = () =>{
+    const url = "./Punch Games TOS.pdf"
+    window.open(url);
+  }
 
   render() {
     return (
@@ -35,6 +39,13 @@ export default class HomeMobileNew extends Component {
             }}
             src={HeadButton}
           />
+           <TermsBlock
+            onClick={() => {
+              this.goPDF();
+            }}
+          >
+            Terms & Conditions of Service
+          </TermsBlock>
         </PageBlock>
       </>
     );
@@ -98,4 +109,12 @@ const HeadBackgroundBlock = styled.img`
   width: 4.9rem;
   top: 0.55rem;
   left: 0.42rem;
+`;
+
+const TermsBlock = styled.div`
+  width: calc(7.5rem);
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.12rem;
+  padding-bottom: 0.3rem;
 `;
