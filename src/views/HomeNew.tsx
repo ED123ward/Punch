@@ -31,7 +31,7 @@ export default class HomeNew extends Component {
     return (
       <>
         <PageBox>
-          <VideoBox autoPlay loop muted src="./box.mp4" />
+          <VideoBox autoPlay loop muted src="https://burningstar-popshots.s3.us-west-1.amazonaws.com/punch/publicize-video-1.mp4" />
         </PageBox>
         <HeadBackgroundBlock src={HeadBackground} />
         <HeadBlock>
