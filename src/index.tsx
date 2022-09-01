@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Home from './views/Home'
+import HomeNew from './views/HomeNew';
 import reportWebVitals from './reportWebVitals';
 import './utils/flexiable'
 
@@ -10,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Home />
+    <HomeNew />
   </React.StrictMode>
 );
 

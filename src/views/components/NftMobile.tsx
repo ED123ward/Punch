@@ -22,7 +22,7 @@ const Nft: React.FC = () => {
     <>
       <NftBlock>
         <NftTitle>PUNCH NFTs</NftTitle>
-        <NftVideo autoPlay loop muted src="./Punchnft.mp4" />
+        <NftVideo autoPlay loop muted src="./1234.mp4?t=1" />
         {/* <NftImg src={NftCard1} /> */}
         <NftText>
           <p>
