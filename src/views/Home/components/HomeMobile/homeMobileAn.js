@@ -41,11 +41,25 @@ export default class HomeMobileAn extends Component {
 
     let remianAllSeconds = Math.floor(
       (setTime.getTime() - nowTime.getTime()) / 1000
-    ); //剩余总秒数
+    ); 
+    
+    //剩余总秒数
     let remainDays = Math.floor(remianAllSeconds / (60 * 60 * 24)); //剩余天数
+    if(remainDays < 10 ){
+      remainDays = '0'+remainDays
+    }
     let remainHours = Math.floor((remianAllSeconds / (60 * 60)) % 24); //剩余小时数
+    if(remainHours < 10 ){
+      remainHours = '0'+remainHours
+    }
     let remainMinutes = Math.floor((remianAllSeconds / 60) % 60); //剩余分钟数
+    if(remainMinutes < 10 ){
+      remainMinutes = '0'+remainMinutes
+    }
     let remainSeconds = Math.floor(remianAllSeconds % 60); //剩余秒数
+    if(remainSeconds < 10 ){
+      remainSeconds = '0'+remainSeconds
+    }
     let str = `${remainDays}:${remainHours}:${remainMinutes}:${remainSeconds}`;
     this.setState({
       Days: remainDays,
