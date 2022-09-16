@@ -41,7 +41,8 @@ export default class HomeWindow extends Component {
 
     let remianAllSeconds = Math.floor(
       (setTime.getTime() - nowTime.getTime()) / 1000
-    ); //剩余总秒数
+    ); 
+    //剩余总秒数
     let remainDays = Math.floor(remianAllSeconds / (60 * 60 * 24)); //剩余天数
     if(remainDays < 10 ){
       remainDays = '0'+remainDays

@@ -13,24 +13,23 @@
 
         .video_block {
             display: block;
-            position: absolute;
-            top: 0;
+            position: relative;
 
             .video {
+                display: block;
                 width: 100%;
-                position: relative;
+                position: absolute;
+                top: 0;
             }
 
             .show {
-                display: block;
+                opacity: 1;
             }
 
             .hidden {
-                display: none;
+                opacity: 0;
             }
-            .iosImg{
-                margin-top: 5rem;
-            }
+
         }
 
         .logoBlock {
