@@ -1,0 +1,28 @@
+.agreementPage {
+    padding: 0 0.8rem;
+    background-color: #ffffffff;
+    min-height: 100vh;
+    font-family: muli, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+    text-align: left;
+    color: #394285;
+    position: relative;
+    display: block;
+    padding-bottom: 50px;
+    .title {
+        font-weight: 900;
+        line-height: 1.4;
+        font-size: 0.32rem;
+        padding-top: 0.3rem;
+        margin-bottom: 0.2rem;
+    }
+    .pram{
+        font-weight: 700;
+        font-size: 0.24rem;
+    }
+    div{
+        margin-bottom: 0.2rem;
+        font-weight: 500;
+        line-height: 2;
+        font-size: 0.18rem;
+    }
+}
