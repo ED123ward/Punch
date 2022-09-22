@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./homeWindow.module.scss";
 
@@ -37,7 +37,7 @@ export default class HomeWindow extends Component {
 
   showTime = () => {
     let nowTime = new Date(); //获取当前时间
-    let setTime = new Date("2022/11/11"); //设置结束时间
+    let setTime = new Date("2022/10/23"); //设置结束时间
 
     let remianAllSeconds = Math.floor(
       (setTime.getTime() - nowTime.getTime()) / 1000
@@ -125,8 +125,8 @@ export default class HomeWindow extends Component {
   }
 
   bindEvents() {
-    window.addEventListener("resize", () => this.handleResize());
-    window.addEventListener("scroll", () => this.handleScroll());
+    window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   getScrollTop() {
@@ -149,7 +149,7 @@ export default class HomeWindow extends Component {
     return this.start < 0 || this.start > this.MAX_LEN - 1;
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const scrollY = this.getScrollTop();
     let delta = scrollY - this.curScrollY;
     const isDown = delta > 0;
@@ -193,7 +193,7 @@ export default class HomeWindow extends Component {
     this.drawCanvas(this.start);
   }
 
-  handleResize() {
+  handleResize = () => {
     const wScale = window.innerWidth / (this.canvas2.width || 1458);
     const hScale = (window.innerHeight - 52) / (this.canvas2.height || 1458);
 
@@ -218,13 +218,11 @@ export default class HomeWindow extends Component {
    window.location.href = '/#/agreement?type=all'
   }
 
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+  }
 
-
-  //监听滑动
-  // watchScroll =  ()=>{
-  //   window.addEventListener('resize', () => this.handleResize());
-  // 	window.addEventListener('scroll', () => this.handleScroll());
-  // }
 
   render() {
     return (
@@ -287,7 +285,7 @@ export default class HomeWindow extends Component {
           >
             <img src={Button} />
           </div>
-          <div
+          {/* <div
             className={`${styles.termsBlock} ${
               this.state.isshow ? styles.anmationShow : ""
             } `}
@@ -296,19 +294,26 @@ export default class HomeWindow extends Component {
             }}
           >
             Terms & Conditions of Service
+          </div> */}
+          <div  className={`${styles.termsBlock} ${
+              this.state.isshow ? styles.anmationShow : ""
+            } `}>
+          <Link
+           className={`${styles.link}`}
+          to={`/agreement/${'type'}`}
+          >
+            Terms & Conditions of Service
+          </Link>
           </div>
         </div>
        
         <div className={`${styles.bodyBlock}`}>
-          <canvas id="02-head-bob-turn" width="1458" height="2000"></canvas>
+          <canvas id="02-head-bob-turn" width="1200" height="2000"></canvas>
         </div>
       </div>
     );
   }
 
-  componentWillUnmount(){
-    window.removeEventListener("resize", () => this.handleResize());
-    window.removeEventListener("scroll", () => this.handleScroll());
-  }
+
 
 }

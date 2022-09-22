@@ -18,6 +18,7 @@ export default class agreement extends Component {
   }
 
   scrollToAnchor = (anchorName) => {
+    console.log(anchorName)
     if (anchorName) {
       let anchorElement = document.getElementById(anchorName);
       if (anchorElement) {

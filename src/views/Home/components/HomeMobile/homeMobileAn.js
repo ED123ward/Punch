@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
+import { Link, useNavigate } from "react-router-dom";
+
 import styles from "./homeMobile.module.scss";
 
 import LogoText from "../../../../assets/home/logoText.png";
@@ -37,7 +39,7 @@ export default class HomeMobileAn extends Component {
 
   showTime = () => {
     let nowTime = new Date(); //获取当前时间
-    let setTime = new Date("2022/11/11"); //设置结束时间
+    let setTime = new Date("2022/10/23"); //设置结束时间
 
     let remianAllSeconds = Math.floor(
       (setTime.getTime() - nowTime.getTime()) / 1000
@@ -88,6 +90,10 @@ export default class HomeMobileAn extends Component {
       this.showTime();
     }, 1000);
   }
+
+  goAgreement = ()=>{
+    window.location.href = '/#/agreement?type=all'
+   }
 
   render() {
 
@@ -144,11 +150,12 @@ export default class HomeMobileAn extends Component {
           </div>
           <div
             className={styles.termsBlock}
-            onClick={() => {
-              this.goPDF();
-            }}
           >
-            Terms & Conditions of Service
+              <Link
+              className={`${styles.link}`}
+          to={`/agreement/${'type'}`}
+          > Terms & Conditions of Service</Link>
+           
           </div>
         </div>
       </div>
