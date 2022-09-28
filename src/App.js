@@ -13,7 +13,7 @@ function App() {
        <HashRouter>
         <Routes>
             <Route  path="/" element={<Home />} />
-            <Route  path="/agreement/:query" element={<Agreement />} />
+            <Route  path="/agreement" element={<Agreement />} />
             <Route  path="/about/:query" element={<About />} />
             <Route  path="*" element={<Home  />} />
         </Routes>
