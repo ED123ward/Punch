@@ -85,7 +85,7 @@ export default class HomeWindow extends Component {
 
   componentDidMount() {
     this.watchVideo();
-    this.init();
+    // this.init();
     setInterval(() => {
       this.showTime();
     }, 1000);
@@ -300,16 +300,16 @@ export default class HomeWindow extends Component {
             } `}>
           <Link
            className={`${styles.link}`}
-          to={`/agreement/${'type'}`}
+          to={`/agreement?type=all`}
           >
             Terms & Conditions of Service
           </Link>
           </div>
         </div>
        
-        <div className={`${styles.bodyBlock}`}>
+        {/* <div className={`${styles.bodyBlock}`}>
           <canvas id="02-head-bob-turn" width="1200" height="2000"></canvas>
-        </div>
+        </div> */}
       </div>
     );
   }
