@@ -38,7 +38,7 @@ export default class HomeMobileAn extends Component {
 
   showTime = () => {
     let nowTime = new Date(); //获取当前时间
-    let setTime = new Date("2022/10/23"); //设置结束时间
+    let setTime = new Date("2022/11/30"); //设置结束时间
 
     let remianAllSeconds = Math.floor(
       (setTime.getTime() - nowTime.getTime()) / 1000
