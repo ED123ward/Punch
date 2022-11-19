@@ -4,12 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./homeMobile.module.scss";
 
+import { ScrollPercentage } from "react-scroll-percentage";
+
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
 import DayUnit from "../../../../assets/home/Days.png";
 import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
+
+import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
+import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
+import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
+import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
 export default class HomeMobileAn extends Component {
   state = {
@@ -19,6 +26,11 @@ export default class HomeMobileAn extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
+    v2: "video2",
+    startStatu: false,
+    showTitleActive: false,
+    showContentActive: false,
+    showBallActive: false,
   };
 
   goWeb = () => {
@@ -87,20 +99,21 @@ export default class HomeMobileAn extends Component {
     setInterval(() => {
       this.showTime();
     }, 1000);
-  }  
-  
-  goAgreement = ()=>{
-    window.location.href = '/#/agreement?type=all'
-   }
+  }
 
-
+  goAgreement = () => {
+    window.location.href = "/#/agreement?type=all";
+  };
+  playV2 = () => {
+    var elevideo = document.getElementById("video2");
+    elevideo.play();
+  };
 
   render() {
     return (
       <div className={styles.home_page}>
         <div className={styles.headBlock}>
           <div className={styles.video_block}>
-
             <video
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
@@ -114,7 +127,11 @@ export default class HomeMobileAn extends Component {
               data-wf-ignore="true"
               data-object-fit="cover"
             >
-              <source src="./loopMobile.mp4" type="video/mp4" data-wf-ignore="true" />
+              <source
+                src="./loopMobile.mp4"
+                type="video/mp4"
+                data-wf-ignore="true"
+              />
               您的浏览器不支持 video 标签。
             </video>
 
@@ -138,9 +155,6 @@ export default class HomeMobileAn extends Component {
               />
               您的浏览器不支持 video 标签。
             </video>
-
-            
-
           </div>
           <div className={styles.logoBlock}>
             <img src={LogoText} />
@@ -170,14 +184,145 @@ export default class HomeMobileAn extends Component {
           >
             <img src={Button} />
           </div>
-          <div
-            className={styles.termsBlock}
+          <div className={styles.termsBlock}>
+            <Link className={`${styles.link}`} to={`/agreement/${"type"}`}>
+              {" "}
+              Terms & Conditions of Service
+            </Link>
+          </div>
+        </div>
+        <div className={styles.boxingBlock}>
+          <div className={styles.video_block}>
+            <video
+              id={this.state.v2}
+              className={`${styles.video}`}
+              preload="auto"
+              controlsList="nodownload"
+              muted
+              playsInline
+              data-wf-ignore="true"
+              data-object-fit="cover"
+            >
+              <source
+                src="./boxingMobile.mp4"
+                type="video/mp4"
+                data-wf-ignore="true"
+              />
+              您的浏览器不支持 video 标签。
+            </video>
+          </div>
+          <ScrollPercentage
+            as="div"
+            onChange={(percentage, entry) => {
+              console.log(percentage);
+              if (percentage > 0.2) {
+                this.setState({
+                  showTitleActive: true,
+                });
+              }
+              if (percentage > 0.5 && !this.state.startStatu) {
+                this.setState({
+                  startStatu: true,
+                });
+                this.playV2();
+              }
+              if (percentage > 0.7) {
+                this.setState({
+                  showContentActive: true,
+                });
+              }
+              if (percentage === 0) {
+                this.setState({
+                  startStatu: false,
+                  showTitleActive: false,
+                  showContentActive: false,
+                });
+              }
+            }}
           >
-              <Link
-              className={`${styles.link}`}
-          to={`/agreement/${'type'}`}
-          > Terms & Conditions of Service</Link>
-           
+            <div
+              className={`${styles.boxingTitle} ${
+                this.state.showTitleActive ? styles.showTitleAnimation : ""
+              } `}
+            >
+              Next Gen Web 3.0 Gaming Platform
+            </div>
+          </ScrollPercentage>
+          <div
+            className={`${styles.boxingText} ${
+              this.state.showContentActive ? styles.showContentAnimation : ""
+            }`}
+          >
+            <div className={styles.boxingContentTitle}>Discover our games</div>
+
+            <div className={styles.boxingContentText}>
+              Our portfolio of hyper-casual and casual games has over 6 billion
+              downloads and entertain over 300 million people per month.
+            </div>
+          </div>
+        </div>
+        <div className={styles.ballBlock}>
+          <div className={styles.video_block}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              preload="auto"
+              controlsList="nodownload"
+              loop="loop"
+              muted
+              playsInline
+              data-wf-ignore="true"
+              data-object-fit="cover"
+            >
+              <source
+                src="./balloonVideo.mp4"
+                type="video/mp4"
+                data-wf-ignore="true"
+              />
+              您的浏览器不支持 video 标签。
+            </video>
+            <ScrollPercentage
+              as="div"
+              onChange={(percentage, entry) => {
+                console.log(percentage);
+                if (percentage > 0.3) {
+                  this.setState({
+                    showBallActive: true,
+                  });
+                }
+                if (percentage === 0) {
+                  this.setState({
+                    showBallActive: false,
+                  });
+                }
+              }}
+            >
+              <div className={`${styles.cardsBlock} ${this.state.showBallActive?styles.balloonCardBlockActive +
+                    " animate__animated animate__zoomIn":''}`}>
+                <div className={styles.cardItem}>
+                  <img className={styles.headImg} src={HeadPortrait1} />
+                  <div className={styles.name}>Boxi Wang</div>
+                  <div className={styles.position}>Chief Executive Officer</div>
+                </div>
+                <div className={styles.cardItem}>
+                  <img className={styles.headImg} src={HeadPortrait2} />
+                  <div className={styles.name}>Oren Bennett</div>
+                  <div className={styles.position}>Chief Business Officer</div>
+                </div>
+                <div className={styles.cardItem}>
+                  <img className={styles.headImg} src={HeadPortrait3} />
+                  <div className={styles.name}>William Ni</div>
+                  <div className={styles.position}>
+                    Chief Technology Officer
+                  </div>
+                </div>
+                <div className={styles.cardItem}>
+                  <img className={styles.headImg} src={HeadPortrait4} />
+                  <div className={styles.name}>Danni Hu</div>
+                  <div className={styles.position}>Chief Marketing Officer</div>
+                </div>
+              </div>
+            </ScrollPercentage>
           </div>
         </div>
       </div>

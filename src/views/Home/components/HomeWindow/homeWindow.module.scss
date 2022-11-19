@@ -1,17 +1,23 @@
 .home_page {
-    background-color: #474276;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: auto;
     width: 100%;
+    overflow-x: hidden;
     position: relative;
+    background-color: #474278;
 
     .headBlock {
         width: 100%;
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
+        // max-height: 8.14rem !important;
+        // position: relative;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+
         .anmationShow {
-            animation: opacityShow 0.2s;
-            animation-fill-mode:forwards;
+            animation: opacityShow 1s;
+            animation-fill-mode: forwards;
         }
 
         @keyframes opacityShow {
@@ -27,12 +33,52 @@
             }
         }
 
+        .animationTop {
+            animation: opacityTop 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes opacityTop {
+            0% {
+
+                top: 0;
+                opacity: 1;
+            }
+
+            100% {
+
+                top: -50vh;
+                opacity: 0;
+
+            }
+        }
+
+        .animationLeft {
+            animation: opacityLeft 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes opacityLeft {
+            0% {
+
+                letf: -12rem;
+                opacity: 0;
+            }
+
+            100% {
+
+                left: 0;
+                opacity: 1;
+
+            }
+        }
+
 
 
         .video_block {
             display: block;
             position: absolute;
-            width: 100%;
             bottom: 0;
 
             .video {
@@ -51,12 +97,39 @@
             }
         }
 
+        .videoBoxing {
+            position: absolute;
+            width: 100%;
+            top: 1.9rem !important;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .animationText {
+            opacity: 0;
+            position: relative;
+            z-index: 999;
+        }
+
         .logoBlock {
             position: relative;
             width: 0.72rem;
             padding: 0.8rem;
-            opacity: 0;
+
             z-index: 99;
+
+            img {
+                width: 0.72rem;
+
+            }
+        }
+        .logoBlocksecont{
+            position: absolute;
+            width: 0.72rem;
+            padding: 0.8rem;
+            top: -1.5rem;
+            z-index: 99;
+            opacity: 0;
 
             img {
                 width: 0.72rem;
@@ -69,7 +142,7 @@
             width: 6.17rem;
             margin: 0 auto;
             z-index: 99;
-            opacity: 0;
+
 
             .timeUnit {
                 margin-top: 0rem;
@@ -96,12 +169,13 @@
                     text-align: center;
                     font-family: DsDigib;
                 }
-                .fontFamily{
+
+                .fontFamily {
                     font-family: DsDigib;
                 }
             }
 
-          
+
 
         }
 
@@ -109,13 +183,28 @@
             z-index: 99;
             position: relative;
             width: 100%;
-            opacity: 0;
+            cursor: pointer;
 
             img {
                 width: 2.8rem;
                 margin: 1.2rem auto 0 auto;
                 display: block;
                 cursor: pointer;
+                z-index: 9999;
+                position: relative;
+            }
+        }
+        .leanMoreBlock{
+            position: relative;
+            margin-top: 0rem;
+            cursor: pointer;
+            img {
+                width: 0.5rem;
+                margin: 0.3rem auto 0 auto;
+                display: block;
+                cursor: pointer;
+                z-index: 9999;
+                position: relative;
             }
         }
 
@@ -130,13 +219,303 @@
             font-size: 0.12rem;
             color: #ffffff;
         }
+
+        .boxingContent {
+            opacity: 1;
+            position: absolute;
+            top: 2rem;
+            z-index: 99;
+            width: 100%;
+
+            .boxingText {
+                width: 8.5rem;
+                position: relative;
+                font-size: 0.7rem;
+                line-height: 0.95rem;
+                letter-spacing: 0.01em;
+                margin: 0 auto;
+                color: #FFFFFF;
+                font-family: 'Murecho';
+                font-weight: 900;
+                left: -24rem;
+                .next{
+                    width: 8.5rem;
+                }
+            }
+           
+
+
+
+            .disGameBlock {
+                margin-top: 2.5rem;
+                margin-left: 14rem;
+                width: 6.8rem;
+                text-align: left;
+                opacity: 0;
+
+                .disGameTitle {
+                    font-family: 'Murecho';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 0.6rem;
+                    letter-spacing: 0.01em;
+                    color: #F3F2FB;
+                }
+
+                .disGameContent {
+                    font-family: 'Murecho';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 0.2rem;
+                    line-height: 0.25rem;
+                    color: #D8D7E8;
+                }
+                .discover{
+                    width: 5rem;
+                    position: relative;
+                    left:-0.12rem
+                }
+            }
+
+            .boxingTextAn{
+                animation: boxingTextAnimation 1s;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes boxingTextAnimation {
+                0% {
+    
+                    margin-left: 14rem;
+                    opacity: 0;
+                }
+    
+                100% {
+    
+                    margin-left: 2rem;
+                    opacity: 1;
+    
+                }
+            }
+           
+            .disGameSwiper{
+                margin-top: 0.5rem;
+                width: 12.4rem;
+                overflow: hidden;
+                position: relative;
+                left: 14rem;
+                height: 6rem;
+                // float: right;
+                opacity: 0;
+            }
+
+            .boxingCardAn{
+                animation: boxinCardAnimation 1s;
+                animation-fill-mode: forwards;
+            }
+            @keyframes boxinCardAnimation {
+                0% {
+    
+                    left: 14rem;
+                    opacity: 0;
+                }
+    
+                100% {
+    
+                    left: 4rem;
+                    opacity: 1;
+    
+                }
+            }
+        }
     }
+
+    .headFloat {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+
+    }
+
+    .balloonBlock {
+        margin-top: 8rem;
+        position: relative;
+        height: 9.5rem;
+
+        .balloonVideo {
+            width: 11.04rem;
+        }
+
+        .balloonCardBlock {
+            width: 9rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 4rem;
+            left: 2.7rem;
+            opacity: 0;
+
+            .balloonCard {
+                width: 4.36rem;
+                height: 1.8rem;
+                background: linear-gradient(180deg, rgba(139, 146, 255, 0.7) 0%, rgba(241, 162, 255, 0.7) 86.9%);
+                mix-blend-mode: normal;
+                opacity: 0.85;
+                box-shadow: inset 0px 0px 0.23rem #F1A3FF;
+                backdrop-filter: blur(6px);
+                border-radius: 0.65rem;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                margin-bottom: 0.27rem;
+
+                .cardImg {
+                    width: 1.12rem;
+                    height: 1.12rem;
+                    margin-left: 0.56rem;
+
+                    .img {
+                        width: 1.12rem;
+                        height: 1.12rem;
+                    }
+                }
+
+                .cardText {
+                    margin-left: 0.27rem;
+                    text-align: left;
+
+                    .niName {
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 0.26rem;
+                        line-height: 0.51rem;
+                        color: #FDFAED;
+                    }
+
+                    .position {
+                        font-weight: 500;
+                        font-size: 0.18rem;
+                        line-height: 0.4rem;
+                        color: #FDFAED;
+
+                    }
+                }
+            }
+          
+        }
+
+        .balloonCardBlockActive {
+            opacity: 1;
+        }
+    }
+
+    .friendBlock {
+        .friendVideo {
+            .video {
+                width: 100%;
+            }
+        }
+
+        .friendText {
+            font-style: normal;
+            font-weight: 800;
+            font-size: 0.6rem;
+            line-height: 1rem;
+            color: #D2D4F2;
+            padding: 0.4rem 0;
+            opacity: 0;
+        }
+
+        .myElement {
+            opacity: 1;
+        }
+    }
+
+    .swiperBlock {
+        width: 100%;
+        overflow: hidden;
+        background: #F3F2FB;
+        padding: 0.3rem 0rem;
+    }
+
+    .surpriseGift {
+        background-color: #4044AD;
+
+        .boxVideo {
+            width: 100%;
+            // height: 8.45rem;
+        }
+    }
+
+    .bottomBlock {
+        background: #0F0D0D;
+        position: relative;
+        height: 4rem;
+
+        .bottomLogo {
+            padding-top: 0.4rem;
+            padding-left: 1.24rem;
+            text-align: left;
+
+            .bottomLogoImg {
+                width: 0.8rem;
+            }
+        }
+
+        .ActiveText {
+            padding-right: 1.2rem;
+            position: absolute;
+            right: 0;
+            font-weight: 600;
+            font-size: 0.38rem;
+            line-height: 0.8rem;
+            letter-spacing: 0.01em;
+            color: #FFFFFF;
+
+            .ActiveTextBox {
+                text-align: left;
+
+                .text {
+                    font-weight: 400;
+                    font-size: 0.24rem;
+                    line-height: 0.4rem;
+                }
+            }
+        }
+
+        .link {
+            position: absolute;
+            bottom: 0.3rem;
+            left: 0;
+            width: 100%;
+            font-size: 0.18rem;
+            text-align: center;
+        }
+    }
+
 
     .bodyBlock {
         //  height: 400vh;
     }
-    .link{
+
+    .link {
         color: #ffffff;
     }
+
+    .bodyBlock1 {
+        height: 10vh;
+    }
+
+    .bodyBlock2 {
+        height: 100vh;
+        display: inline-block;
+    }
+
+    .scrollThis {
+        position: absolute;
+        top: 10vh;
+    }
+
+    .boxing {}
 
 }

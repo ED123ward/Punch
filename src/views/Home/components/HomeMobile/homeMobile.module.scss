@@ -2,11 +2,12 @@
     min-height: 100vh;
     width: 100%;
     position: relative;
+    background-color: #474278;
 
     .headBlock {
         width: 100%;
         height: 100vh;
-        overflow: hidden ;
+        overflow: hidden;
         position: relative;
         // background-image: url(../../../../assets/home/1662568382081.jpg);
         // background-size: 100% 100%;
@@ -71,7 +72,8 @@
                     text-align: center;
                     font-family: DsDigib;
                 }
-                .fontFamily{
+
+                .fontFamily {
                     font-family: DsDigib;
                 }
             }
@@ -99,8 +101,191 @@
             color: #ffffff;
             margin-top: 0.7rem;
         }
-        .link{
+
+        .link {
             color: #ffffff;
+        }
+    }
+
+    .boxingBlock {
+        width: 100%;
+        // height: 100vh;
+        overflow: hidden;
+        position: relative;
+
+        .video_block {
+            display: block;
+            position: relative;
+
+            .video {
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 0;
+            }
+
+            .show {
+                opacity: 1;
+            }
+
+            .hidden {
+                opacity: 0;
+            }
+
+        }
+
+        .boxingButton {
+            position: relative;
+            z-index: 99;
+            cursor: pointer;
+        }
+
+        .boxingTitle {
+            position: relative;
+            width: 5.82rem;
+            display: block;
+            font-weight: 900;
+            font-size: 0.6rem;
+            line-height: 0.74rem;
+            letter-spacing: 0.01em;
+            color: #FFFFFF;
+            margin-top: 15.6vh;
+            opacity: 0;
+            left: -7rem;
+        }
+
+        .showTitleAnimation {
+            animation: showTitleAnimationKey 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes showTitleAnimationKey {
+            0% {
+
+                opacity: 0;
+                left: -7rem;
+            }
+
+            100% {
+                opacity: 1;
+                left: 0.84rem;
+            }
+        }
+
+
+        .boxingText {
+            position: relative;
+            text-align: left;
+            width: 5rem;
+            margin-left: 7rem;
+            margin-top: 30vh;
+            opacity: 0;
+
+            .boxingContentTitle {
+                font-family: 'Murecho';
+                font-style: normal;
+                font-weight: 800;
+                font-size: 0.48rem;
+                line-height: 0.56rem;
+                letter-spacing: 0.01em;
+                color: #F3F2FB;
+            }
+
+            .boxingContentText {
+                font-family: 'Murecho';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 0.16rem;
+                line-height: 0.24rem;
+                color: #D8D7E8;
+                margin-top: 0.14rem;
+
+            }
+        }
+
+        .showContentAnimation {
+            animation: showContentAnimationKey 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes showContentAnimationKey {
+            0% {
+
+                opacity: 0;
+                margin-left: 7rem;
+            }
+
+            100% {
+                opacity: 1;
+                margin-left: 1rem;
+            }
+        }
+
+    }
+
+    .ballBlock {
+        width: 100%;
+        height: 70vh;
+        overflow: hidden;
+        position: relative;
+
+        .video_block {
+            display: block;
+            position: relative;
+
+            .video {
+                display: block;
+                width: 12.5rem;
+                position: absolute;
+                top: 2rem;
+                left: -2.5rem;
+            }
+        }
+
+        .cardsBlock {
+            opacity: 0;
+            padding-top: 6rem;
+            .cardItem {
+                width: 2.86rem;
+                height: 2.2rem;
+                background: linear-gradient(180deg, rgba(139, 146, 255, 0.7) 0%, rgba(241, 162, 255, 0.7) 86.9%);
+                mix-blend-mode: normal;
+                opacity: 0.85;
+                box-shadow: inset 0px 0px 0.46rem #F1A3FF;
+                backdrop-filter: blur(6px);
+                border-radius: 0.44rem;
+                display: inline-block;
+                margin: 0.13rem;
+
+                .headImg {
+                    margin-top: 0.3rem;
+                    width: 0.9rem;
+                    height: 0.9rem;
+                }
+
+                .name {
+                    font-family: 'Murecho';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 0.24rem;
+                    line-height: 0.32rem;
+                    color: #FDFAED;
+                    margin-top: 0.05rem;
+                }
+
+                .position {
+                    font-family: 'Murecho';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 0.1rem;
+                    line-height: 0.2rem;
+                    color: #FDFAED;
+                    margin-top: 0.05rem;
+                }
+            }
+        }
+        .balloonCardBlockActive{
+            opacity: 1;
         }
     }
 

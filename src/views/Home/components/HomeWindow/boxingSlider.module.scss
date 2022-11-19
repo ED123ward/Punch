@@ -1,0 +1,49 @@
+.block{
+   width: 13.4rem;
+   position: relative;
+   
+   left: -2rem;
+    .sliderItem {
+        position: relative;
+        display: flex !important;
+        align-items: center;
+        left:2rem;
+      
+    
+        .itemCard:nth-last-of-type(2n+1) {
+            overflow: hidden;
+            width: 4rem;
+            height: 4.71rem;
+            background: linear-gradient(180deg, rgba(255, 113, 69, 0.62) 0%, #FFCE70 112.74%);
+            mix-blend-mode: normal;
+            opacity: 0.8;
+            backdrop-filter: blur(2px);
+            border-radius: 0.94rem;
+        }
+        .itemCard:nth-last-of-type(2n) {
+            overflow: hidden;
+            width: 4rem;
+            height: 4.71rem;
+            background: linear-gradient(180deg, #78D7FF 0%, #FFECBC 112.74%);
+            mix-blend-mode: normal;
+            opacity: 0.8;
+            backdrop-filter: blur(2px);
+            border-radius: 0.94rem;
+        }
+        .backgroundColor1{
+            background: linear-gradient(180deg, rgba(139, 146, 255, 0.7) 0%, rgba(241, 162, 255, 0.7) 86.9%);
+        }
+        .backgroundColor2{
+            background: linear-gradient(180deg, #78D7FF 0%, #FFECBC 112.74%);
+        }
+        .backgroundColor3{
+            background:linear-gradient(180deg, rgba(255, 113, 69, 0.62) 0%, #FFCE70 112.74%);
+        }
+    }
+}
+.video {
+    width: 100%;
+    position: relative;
+    top: -2.2rem;
+}
+

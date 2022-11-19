@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import SliderAutoPlay from "./slider";
+
 import styles from "./homeWindow.module.scss";
+
+import "animate.css";
+
+import { ScrollPercentage } from "react-scroll-percentage";
 
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
@@ -9,6 +15,17 @@ import DayUnit from "../../../../assets/home/Days.png";
 import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
+import LeanMoreImg from "../../../../assets/home/leanMore.png"
+
+import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
+import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
+import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
+import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
+
+import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png"
+import Discover from "../../../../assets/home/Discover our games.png"
+
+import BoxingSlider from "./boxingSlider";
 
 export default class HomeWindow extends Component {
   state = {
@@ -18,6 +35,18 @@ export default class HomeWindow extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
+    v2: "video2",
+    v3: "video3",
+    float: false,
+    textYValue: null,
+    textShow: false,
+    balloonCardYValue: null,
+    balloonCardShow: false,
+    isScollerActive: false,
+    rotatingActive: false,
+    boxingTextShow:false,
+    boxingCardsShow:false,
+    startStatu:false
   };
 
   goWeb = () => {
@@ -71,7 +100,6 @@ export default class HomeWindow extends Component {
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
-    console.log(elevideo);
     elevideo.addEventListener(
       "ended",
       () => {
@@ -83,152 +111,37 @@ export default class HomeWindow extends Component {
     );
   };
 
+  goTop = () => {
+    window.scrollTo(0, 0);
+  };
+  scrollPage = () =>{
+    let height = document.body.clientHeight;
+    window.scrollTo(0, height*0.03);
+  }
+
+  playV3 = () => {
+    var elevideo = document.getElementById("video3");
+    elevideo.play();
+  };
+
   componentDidMount() {
     this.watchVideo();
-    // this.init();
     setInterval(() => {
       this.showTime();
     }, 1000);
+    setTimeout(() => {
+      this.goTop();
+    }, 500);
   }
-
-  init() {
-    this.initData();
-    this.initImages();
-    this.handleResize();
-    this.bindEvents();
-  }
-
-  initData() {
-    this.canvas2 = document.getElementById("02-head-bob-turn");
-    this.context = this.canvas2.getContext("2d");
-    this.MAX_LEN = 85;
-    this.imgs = [];
-    this.start = 1;
-    this.oldStart = -1;
-    this.addN = 1;
-    this.interval = 10; // 控制刷新率
-    this.leftY = 0;
-    this.curScrollY = this.getScrollTop();
-    this.startPos = this.curScrollY;
-    this.lastPos = this.curScrollY;
-    this.isStop = false;
-  }
-
-  initImages() {
-    for (let i = 0; i < this.MAX_LEN; i++) {
-      const img = new Image();
-      // img.onload = () => this.imgs[i] = img
-      img.src = this.getImage(i);
-      // 不管加载否 保证顺序
-      this.imgs.push(img);
-    }
-  }
-
-  bindEvents() {
-    window.addEventListener("resize", this.handleResize);
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  getScrollTop() {
-    return window.scrollY || 0;
-  }
-
-  getImage(num) {
-    // const srcDir =
-    //   "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/02-head-bob-turn/";
-    // const imgSuffix = ".jpg";
-     const srcDir =
-      "./knuckles/";
-    const imgSuffix = ".png";
-    console.assert(Number.isInteger(num) && num > -1 && num < this.MAX_LEN);
-    const t = ("" + num).padStart(4, "0");
-    return srcDir + t + imgSuffix;
-  }
-
-  isOver() {
-    return this.start < 0 || this.start > this.MAX_LEN - 1;
-  }
-
-  handleScroll = () => {
-    const scrollY = this.getScrollTop();
-    let delta = scrollY - this.curScrollY;
-    const isDown = delta > 0;
-
-    delta = Math.abs(delta) + this.leftY;
-    this.curScrollY = scrollY;
-
-    if (
-      this.isStop &&
-      isDown === this.needDown &&
-      ((isDown && this.curScrollY > this.lastPos) ||
-        (!isDown && this.curScrollY < this.lastPos))
-    ) {
-      this.isStop = false;
-    }
-    if (this.isStop) return;
-
-    // good idea: 补偿
-    const alpha = Math.floor(delta / this.interval) * this.addN || 0;
-    this.leftY = delta % this.interval;
-
-    isDown ? (this.start += alpha) : (this.start -= alpha);
-    if (this.isOver() && !this.isStop) {
-      // this.lastPos = scrollY
-      this.isStop = true;
-      console.log(this.start, scrollY, this.lastPos);
-
-      // TODO: 多个 canvas 用 opacity 切换
-      // this.canvas2.style.cssText = `opacity: 0;`
-    }
-
-    if (this.start < 0) this.start = 0;
-    if (this.start > this.MAX_LEN - 1) this.start = this.MAX_LEN - 1;
-    if (this.startPos >= scrollY) this.start = 0;
-    if (this.oldStart === this.start) return;
-    this.oldStart = this.start;
-    // good idea：记录
-    this.lastPos = scrollY;
-    this.needDown = !isDown;
-
-    this.drawCanvas(this.start);
-  }
-
-  handleResize = () => {
-    const wScale = window.innerWidth / (this.canvas2.width || 1458);
-    const hScale = (window.innerHeight - 52) / (this.canvas2.height || 1458);
-
-    this.canvas2.style.transform = `matrix(${wScale}, 0, 0, ${hScale}, 0, 0)`;
-  }
-
-  drawCanvas(sequence) {
-    this.canvas2 = document.getElementById("02-head-bob-turn");
-    this.context = this.canvas2.getContext("2d");
-
-    // 当前序列帧
-    const imgTemp = this.imgs[sequence];
-    const canvas = this.canvas2;
- 
-    canvas.width = imgTemp.width;
-    canvas.height = imgTemp.height;
-
-    this.context.drawImage(imgTemp, 0, 0);
-  }
-
-  goAgreement = ()=>{
-   window.location.href = '/#/agreement?type=all'
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener("resize", this.handleResize);
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
 
   render() {
     return (
       <div className={styles.home_page}>
-         {/* <img src="./knuckles/1.png" /> */}
-        <div className={styles.headBlock}>
+        <div
+          className={`${styles.headBlock}  ${
+            this.state.float ? styles.headFloat : ""
+          } ${this.state.isScollerActive ? styles.scrollThis : ""}`}
+        >
           <div className={styles.video_block}>
             <video
               className={`${styles.video} ${
@@ -246,74 +159,300 @@ export default class HomeWindow extends Component {
               muted
               src="./start.mp4"
             ></video>
+            <video
+              id={this.state.v2}
+              className={`${styles.videoBoxing} ${
+                this.state.rotatingActive ? styles.show : styles.hidden
+              }`}
+              autoPlay
+              muted
+              src="./boxingMobile.mp4"
+            ></video>
           </div>
           <div
-            className={`${styles.logoBlock} ${
+            className={`${styles.animationText} ${
               this.state.isshow ? styles.anmationShow : ""
-            }`}
+            } ${this.state.rotatingActive ? styles.animationTop : ""}`}
           >
-            <img src={LogoText} />
-          </div>
-          <div
-            className={`${styles.timeBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            }`}
-          >
-            <div className={styles.timeDown}>
-              <div className={styles.timeText}>{this.state.Days}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Hours}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Minutes}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Seconds}</div>
+            <div className={`${styles.logoBlock}`}>
+              <img
+                onClick={() => {
+                  this.goTop();
+                }}
+                src={LogoText}
+              />
             </div>
-            <div className={styles.timeUnit}>
-              <img src={DayUnit}></img>
-              <img src={HoursUnit} />
-              <img src={MinutesUnit} />
-              <img src={SecondsUnit} />
+
+            <div className={`${styles.timeBlock} `}>
+              <div className={styles.timeDown}>
+                <div className={styles.timeText}>{this.state.Days}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Hours}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Minutes}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Seconds}</div>
+              </div>
+              <div className={styles.timeUnit}>
+                <img src={DayUnit}></img>
+                <img src={HoursUnit} />
+                <img src={MinutesUnit} />
+                <img src={SecondsUnit} />
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                // this.goWeb();
+                this.scrollPage()
+              }}
+              className={`${styles.buttonBlock} `}
+            >
+              <img src={Button} />
+            </div>
+            <div  onClick={() => {
+                this.scrollPage()
+              }}
+              className={`${styles.leanMoreBlock} `}>
+              <img src={LeanMoreImg} />
             </div>
           </div>
-          <div
-            onClick={() => {
-              this.goWeb();
-            }}
-            className={`${styles.buttonBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            }`}
-          >
-            <img src={Button} />
-          </div>
-          {/* <div
-            className={`${styles.termsBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            } `}
-            onClick={() => {
-              this.goAgreement();
-            }}
-          >
-            Terms & Conditions of Service
-          </div> */}
-          <div  className={`${styles.termsBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            } `}>
-          <Link
-           className={`${styles.link}`}
-          to={`/agreement?type=all`}
-          >
-            Terms & Conditions of Service
-          </Link>
+
+          <div className={`${styles.boxingContent}`}>
+          <div className={` ${styles.logoBlocksecont} ${this.state.rotatingActive ? styles.animationLeft : ""}`  }>
+              <img
+                onClick={() => {
+                  this.goTop();
+                }}
+                src={LogoText}
+              />
+            </div>
+            <div
+              className={`${styles.boxingText} ${
+                this.state.rotatingActive ? styles.animationLeft : ""
+              }`}
+            >
+             <img className={styles.next} src={Next} />
+            </div>
+            <ScrollPercentage
+              as="div"
+              onChange={(percentage, entry) => {
+                console.log(percentage);
+                if (percentage > 0.3) {
+                  this.setState({
+                    boxingTextShow: true,
+                  });
+                }
+                if (percentage === 0) {
+                  this.setState({
+                    boxingTextShow: false,
+                  });
+                }
+              }}
+            >
+              <div className={`${styles.disGameBlock} ${this.state.boxingTextShow?styles.boxingTextAn:''}`}>
+                {/* <div className={styles.disGameTitle}>Discover our games</div>
+                <div className={styles.disGameContent}>
+                  Our portfolio of hyper-casual and casual games has over 6
+                  billion downloads and entertain over 300 million people per
+                  month.
+                </div> */}
+                <img className={styles.discover} src={Discover} />
+                <div className={styles.disGameContent}>
+                  Our portfolio of hyper-casual and casual games has over 6
+                  billion downloads and entertain over 300 million people per
+                  month.
+                </div>
+                
+              </div>
+            </ScrollPercentage>
+            <ScrollPercentage
+              as="div"
+              onChange={(percentage, entry) => {
+                if (percentage > 0.3) {
+                  this.setState({
+                    boxingCardsShow: true,
+                  });
+                }
+                if (percentage === 0) {
+                  this.setState({
+                    boxingCardsShow: false,
+                  });
+                }
+              }}
+            >
+              <div className={`${styles.disGameSwiper} ${this.state.boxingCardsShow?styles.boxingCardAn:''}`}>
+                <BoxingSlider />
+              </div>
+            </ScrollPercentage>
           </div>
         </div>
-       
-        {/* <div className={`${styles.bodyBlock}`}>
-          <canvas id="02-head-bob-turn" width="1200" height="2000"></canvas>
-        </div> */}
+
+        <ScrollPercentage
+          as="div"
+          onChange={(percentage, entry) => {
+            if (percentage > 0.996984126984127) {
+              this.setState({
+                rotatingActive: true,
+              });
+            }
+            if (percentage === 1) {
+              this.setState({
+                isScollerActive: true,
+              });
+            }
+          }}
+        >
+          <div className={styles.bodyBlock1}></div>
+        </ScrollPercentage>
+
+        <div className={styles.bodyBlock2}></div>
+
+        <div className={styles.balloonBlock} id={"balloon"}>
+          <ScrollPercentage
+            as="div"
+            onChange={(percentage, entry) => {
+              if (percentage > 0.42771577380952377 && !this.state.startStatu) {
+                  this.setState({
+                    startStatu: true,
+                  });
+                  this.playV3();
+                
+                this.setState({
+                  balloonCardShow: true,
+                });
+              }
+              if (percentage === 0) {
+                this.setState({
+                  balloonCardShow: false,
+                  startStatu:false
+                });
+              }
+            }}
+          >
+            <video
+              id={this.state.v3}
+              className={`${styles.balloonVideo}`}
+              muted
+              src="./balloonVideo.mp4"
+            ></video>
+
+            <div
+              className={`${styles.balloonCardBlock} ${
+                this.state.balloonCardShow
+                  ? styles.balloonCardBlockActive +
+                    " animate__animated animate__zoomIn"
+                  : ""
+              }`}
+            >
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait1} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Boxi Wang</div>
+                  <div className={styles.position}>Chief Executive Officer</div>
+                </div>
+              </div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait2} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Oren Bennett</div>
+                  <div className={styles.position}>Chief Business Officer</div>
+                </div>
+              </div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait3} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>William Ni</div>
+                  <div className={styles.position}>
+                    Chief Technology Officer
+                  </div>
+                </div>
+              </div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait4} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Danni Hu</div>
+                  <div className={styles.position}>Chief Marketing Officer</div>
+                </div>
+              </div>
+            </div>
+          </ScrollPercentage>
+        </div>
+
+        <div className={styles.friendBlock}>
+          <div className={styles.friendVideo}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./friendVideo.mp4"
+            ></video>
+          </div>
+          <ScrollPercentage
+            as="div"
+            onChange={(percentage, entry) => {
+              if (percentage > 0.32771577380952377) {
+                this.setState({
+                  textShow: true,
+                });
+              }
+              if (percentage === 0) {
+                this.setState({
+                  textShow: false,
+                });
+              }
+            }}
+          >
+            <div
+              className={`${styles.friendText} ${
+                this.state.textShow
+                  ? styles.myElement +
+                    " animate__animated animate__fadeInLeftBig"
+                  : ""
+              } `}
+            >
+              Our Backer
+            </div>
+          </ScrollPercentage>
+        </div>
+
+        <div className={styles.swiperBlock}>
+          <SliderAutoPlay />
+        </div>
+
+        <div className={styles.surpriseGift}>
+          <video
+            className={`${styles.boxVideo}`}
+            autoPlay
+            loop
+            muted
+            src="./box.mp4"
+          ></video>
+        </div>
+        <div className={styles.bottomBlock}>
+          <div className={styles.bottomLogo}>
+            <img className={styles.bottomLogoImg} src={LogoText} />
+          </div>
+          <div className={styles.ActiveText}>
+            <div className={styles.ActiveTextBox}>
+              <div>Links</div>
+              <div className={styles.text}>Terms</div>
+              <div className={styles.text}>Privacy Policy</div>
+            </div>
+          </div>
+          <Link className={`${styles.link}`} to={`/agreement/${"type"}`}>
+            Terms & Conditions of Service
+          </Link>
+        </div>
       </div>
     );
   }
-
-
-
 }

@@ -14,7 +14,7 @@ export default class HomeMobile extends Component {
     const isMobile = isIphone || isAndroid;
 
     if (isAndroid) {
-      return <HomeMobileAn />;
+      return <HomeMobileIos />;
     } else {
       return <HomeMobileIos />;
     }
