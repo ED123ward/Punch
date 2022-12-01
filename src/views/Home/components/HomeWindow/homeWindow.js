@@ -25,6 +25,8 @@ import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png"
 import Discover from "../../../../assets/home/Discover our games.png"
 
+import HeadImg from "../../../../assets/home/headImg.png"
+
 import BoxingSlider from "./boxingSlider";
 
 export default class HomeWindow extends Component {
@@ -185,7 +187,7 @@ export default class HomeWindow extends Component {
 
             <div className={`${styles.timeBlock} `}>
               <div className={styles.timeDown}>
-                <div>ALPHA IS HERE</div>
+                <div>  <img className={styles.headImgAStyle} src={HeadImg} /></div>
               
                 {/* <div className={styles.timeText}>{this.state.Days}</div>
                 <div className={styles.fontFamily}>:</div>

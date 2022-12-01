@@ -12,6 +12,8 @@ import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
 
+import HeadImg from "../../../../assets/home/headImg.png"
+
 export default class HomeMobileAn extends Component {
   state = {
     isshow: false,
@@ -125,7 +127,7 @@ export default class HomeMobileAn extends Component {
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
-            <div>ALPHA IS HERE</div>
+            <div><img className={styles.headImgAStyle} src={HeadImg} /></div>
               {/* <div className={styles.timeText}>{this.state.Days}</div>
               <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>

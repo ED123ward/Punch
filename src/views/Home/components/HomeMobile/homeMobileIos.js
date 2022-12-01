@@ -18,6 +18,8 @@ import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
 import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
 import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
+import HeadImg from "../../../../assets/home/headImg.png"
+
 export default class HomeMobileAn extends Component {
   state = {
     isshow: false,
@@ -161,7 +163,9 @@ export default class HomeMobileAn extends Component {
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
-            <div>ALPHA IS HERE</div>
+            <div>
+            <img className={styles.headImgAStyle} src={HeadImg} />
+            </div>
               {/* <div className={styles.timeText}>{this.state.Days}</div>
               <div className={`${styles.fontFamily}`}>:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
