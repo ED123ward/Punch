@@ -161,20 +161,21 @@ export default class HomeMobileAn extends Component {
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
-              <div className={styles.timeText}>{this.state.Days}</div>
+            <div>ALPHA IS HERE</div>
+              {/* <div className={styles.timeText}>{this.state.Days}</div>
               <div className={`${styles.fontFamily}`}>:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
               <div className={`${styles.fontFamily}`}>:</div>
               <div className={styles.timeText}>{this.state.Minutes}</div>
               <div className={`${styles.fontFamily}`}>:</div>
-              <div className={styles.timeText}>{this.state.Seconds}</div>
+              <div className={styles.timeText}>{this.state.Seconds}</div> */}
             </div>
-            <div className={styles.timeUnit}>
+            {/* <div className={styles.timeUnit}>
               <img src={DayUnit}></img>
               <img src={HoursUnit} />
               <img src={MinutesUnit} />
               <img src={SecondsUnit} />
-            </div>
+            </div> */}
           </div>
           <div
             onClick={() => {
