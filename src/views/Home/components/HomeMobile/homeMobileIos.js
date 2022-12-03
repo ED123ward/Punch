@@ -261,8 +261,7 @@ export default class HomeMobileAn extends Component {
             <div className={styles.boxingContentTitle}>Discover our games</div>
 
             <div className={styles.boxingContentText}>
-              Our portfolio of hyper-casual and casual games has over 6 billion
-              downloads and entertain over 300 million people per month.
+            Our portfolio of hyper-casual and casual games includes puzzle, sports and action games, with more genres of games to come. Gamers of all demographics can find something they like!
             </div>
           </div>
         </div>
