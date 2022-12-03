@@ -262,9 +262,7 @@ export default class HomeWindow extends Component {
                 </div> */}
                 <img className={styles.discover} src={Discover} />
                 <div className={styles.disGameContent}>
-                  Our portfolio of hyper-casual and casual games has over 6
-                  billion downloads and entertain over 300 million people per
-                  month.
+                Our portfolio of hyper-casual and casual games includes puzzle, sports and action games, with more genres of games to come. Gamers of all demographics can find something they like!
                 </div>
                 
               </div>
