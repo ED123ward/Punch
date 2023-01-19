@@ -3,6 +3,7 @@
     width: 100%;
     position: relative;
     background-color: #474278;
+    padding-bottom: 1rem;
 
     .headBlock {
         width: 100%;
@@ -40,6 +41,19 @@
 
             img {
                 width: 0.72rem;
+            }
+        }
+        .topLine{
+            display: flex;
+            justify-content:space-between;
+            .loginButton{
+                margin-top: 0.8rem;
+                margin-right:0.31rem ;
+                position: relative;
+                .loginButtonImg{
+                    width: 2.12rem;
+                    height: 0.81rem
+                }
             }
         }
 

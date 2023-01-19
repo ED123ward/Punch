@@ -7,18 +7,15 @@ import styles from "./homeMobile.module.scss";
 import { ScrollPercentage } from "react-scroll-percentage";
 
 import LogoText from "../../../../assets/home/logoText.png";
+import UserLogin from "../../../../assets/home/userLogin.png";
 import Button from "../../../../assets/home/button.png";
-import DayUnit from "../../../../assets/home/Days.png";
-import HoursUnit from "../../../../assets/home/Hours.png";
-import MinutesUnit from "../../../../assets/home/Minutes.png";
-import SecondsUnit from "../../../../assets/home/Seconds.png";
 
 import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
 import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
 import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
 import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
-import HeadImg from "../../../../assets/home/headImg.png"
+import HeadImg from "../../../../assets/home/headImg.png";
 
 export default class HomeMobileAn extends Component {
   state = {
@@ -34,6 +31,25 @@ export default class HomeMobileAn extends Component {
     showContentActive: false,
     showBallActive: false,
   };
+
+  //获得token
+
+  getUrlQuery = () =>{
+    let location = window.location;
+    let search = location.hash.split("?token=");
+    if(search !== undefined){
+      console.log(search[1]);
+      if (
+        search[1] == null ||
+        search[1] === undefined
+      ) {
+        localStorage.setItem("token", "");
+      }else{
+        localStorage.setItem("token", search[1]);
+      }
+    }
+    
+  }
 
   goWeb = () => {
     const url = "https://forms.gle/jkNPfDQPxtYqzcFf8";
@@ -98,6 +114,7 @@ export default class HomeMobileAn extends Component {
 
   componentDidMount() {
     this.watchVideo();
+    this.getUrlQuery()
     setInterval(() => {
       this.showTime();
     }, 1000);
@@ -110,6 +127,10 @@ export default class HomeMobileAn extends Component {
     var elevideo = document.getElementById("video2");
     elevideo.play();
   };
+
+  goUserLogin = () =>{
+    window.location.href = "/#/userlogin";
+  }
 
   render() {
     return (
@@ -158,14 +179,19 @@ export default class HomeMobileAn extends Component {
               您的浏览器不支持 video 标签。
             </video>
           </div>
-          <div className={styles.logoBlock}>
-            <img src={LogoText} />
+          <div className={styles.topLine}>
+            <div className={styles.logoBlock}>
+              <img src={LogoText} />
+            </div>
+            <div className={styles.loginButton}>
+              <img className={styles.loginButtonImg} src={UserLogin} onClick={()=>{this.goUserLogin()}} />
+            </div>
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
-            <div>
-            <img className={styles.headImgAStyle} src={HeadImg} />
-            </div>
+              <div>
+                <img className={styles.headImgAStyle} src={HeadImg} />
+              </div>
               {/* <div className={styles.timeText}>{this.state.Days}</div>
               <div className={`${styles.fontFamily}`}>:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
@@ -261,7 +287,9 @@ export default class HomeMobileAn extends Component {
             <div className={styles.boxingContentTitle}>Discover our games</div>
 
             <div className={styles.boxingContentText}>
-            Our portfolio of hyper-casual and casual games includes puzzle, sports and action games, with more genres of games to come. Gamers of all demographics can find something they like!
+              Our portfolio of hyper-casual and casual games includes puzzle,
+              sports and action games, with more genres of games to come. Gamers
+              of all demographics can find something they like!
             </div>
           </div>
         </div>
@@ -301,29 +329,33 @@ export default class HomeMobileAn extends Component {
                 }
               }}
             >
-              <div className={`${styles.cardsBlock} ${this.state.showBallActive?styles.balloonCardBlockActive +
-                    " animate__animated animate__zoomIn":''}`}>
+              <div
+                className={`${styles.cardsBlock} ${
+                  this.state.showBallActive
+                    ? styles.balloonCardBlockActive +
+                      " animate__animated animate__zoomIn"
+                    : ""
+                }`}
+              >
                 <div className={styles.cardItem}>
                   <img className={styles.headImg} src={HeadPortrait1} />
                   <div className={styles.name}>Boxi Wang</div>
-                  <div className={styles.position}>Chief Executive Officer</div>
+                  <div className={styles.position}>Chief Executive </div>
                 </div>
                 <div className={styles.cardItem}>
                   <img className={styles.headImg} src={HeadPortrait2} />
                   <div className={styles.name}>Oren Bennett</div>
-                  <div className={styles.position}>Chief Business Officer</div>
+                  <div className={styles.position}>Chief Business </div>
                 </div>
                 <div className={styles.cardItem}>
                   <img className={styles.headImg} src={HeadPortrait3} />
                   <div className={styles.name}>William Ni</div>
-                  <div className={styles.position}>
-                    Chief Technology Officer
-                  </div>
+                  <div className={styles.position}>Chief Technology</div>
                 </div>
                 <div className={styles.cardItem}>
                   <img className={styles.headImg} src={HeadPortrait4} />
                   <div className={styles.name}>Danni Hu</div>
-                  <div className={styles.position}>Chief Marketing Officer</div>
+                  <div className={styles.position}>Chief Marketing </div>
                 </div>
               </div>
             </ScrollPercentage>

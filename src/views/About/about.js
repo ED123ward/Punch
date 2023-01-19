@@ -9,7 +9,7 @@ export default function About(props) {
 
   useEffect(() => {
     showMess();
-  });
+  },[]);
 
   const params = useParams();
 
