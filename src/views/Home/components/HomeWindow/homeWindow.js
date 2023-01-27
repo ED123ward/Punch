@@ -338,7 +338,7 @@ export default class HomeWindow extends Component {
               src="./balloonVideo.mp4"
             ></video>
 
-            <div
+            {/* <div
               className={`${styles.balloonCardBlock} ${
                 this.state.balloonCardShow
                   ? styles.balloonCardBlockActive +
@@ -384,7 +384,7 @@ export default class HomeWindow extends Component {
                   <div className={styles.position}>Chief Marketing Officer</div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </ScrollPercentage>
         </div>
 

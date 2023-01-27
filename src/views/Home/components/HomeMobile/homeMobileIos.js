@@ -329,7 +329,7 @@ export default class HomeMobileAn extends Component {
                 }
               }}
             >
-              <div
+              {/* <div
                 className={`${styles.cardsBlock} ${
                   this.state.showBallActive
                     ? styles.balloonCardBlockActive +
@@ -357,7 +357,7 @@ export default class HomeMobileAn extends Component {
                   <div className={styles.name}>Danni Hu</div>
                   <div className={styles.position}>Chief Marketing </div>
                 </div>
-              </div>
+              </div> */}
             </ScrollPercentage>
           </div>
         </div>
