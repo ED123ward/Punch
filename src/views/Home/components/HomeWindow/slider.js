@@ -84,43 +84,43 @@ export default class SliderAutoPlay extends Component {
           <div className={styles.sliderItem}>
             <img
               style={{ height: "1rem" }}
-              src="https://www.jasontaylor.club/img/swiper00002.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00002.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "1.025rem" }}
-              src="https://www.jasontaylor.club/img/swiper00003.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00003.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "0.69rem" }}
-              src="https://www.jasontaylor.club/img/swiper00004.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00004.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "1rem" }}
-              src="https://www.jasontaylor.club/img/swiper00001.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00001.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "1rem" }}
-              src="https://www.jasontaylor.club/img/swiper00002.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00002.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "1.025rem" }}
-              src="https://www.jasontaylor.club/img/swiper00003.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00003.png"
             />
           </div>
           <div className={styles.sliderItem}>
             <img
               style={{ height: "0.69rem" }}
-              src="https://www.jasontaylor.club/img/swiper00004.png"
+              src="https://punch-games.s3.us-west-1.amazonaws.com/h5/swiper00004.png"
             />
           </div>
         </Slider>
