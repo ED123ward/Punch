@@ -58,6 +58,16 @@ const loginGoogle = async () =>{
   }
 }
 
+//facebook登录
+const loginFB = async () =>{
+  let data = await handleLoginFB()
+  if(data.length !== 0){
+    openId(data[0].uid)
+  }else{
+    alert('error')
+  }
+}
+
   //登录
   const openId = async (openId) => {
     let query = {
@@ -123,7 +133,7 @@ const loginGoogle = async () =>{
                 <img src={LoginArrowBlack} className={styles.buttonArrow} alt=''></img>
               </div>
             </div>
-            <div className={`${styles.button} ${styles.buttonFacebook}`} onClick={handleLoginFB}>
+            <div className={`${styles.button} ${styles.buttonFacebook}`} onClick={loginFB}>
               <div className={styles.buttonLeft}>
                 <img src={LoginIcon1} className={styles.buttonIcon} alt=''></img>
                 <div className={`${styles.buttonText}`}>Continue with Facebook</div>
