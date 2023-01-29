@@ -16,14 +16,28 @@
 
     .headBlock {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         .logoBlock {
             margin: 0.38rem 0 0 0.38rem;
             text-align: left;
+            display: flex;
+            align-items: center;
         }
 
         .logo {
             width: 0.73rem;
+        }
+        .signOutBlock{
+            margin-right: 0.31rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        .signOut{
+            height: 0.65rem;
         }
     }
 

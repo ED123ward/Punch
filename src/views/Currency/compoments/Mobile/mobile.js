@@ -6,6 +6,7 @@ import styles from "./mobile.module.scss";
 
 import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
+import SignOut from "../../../../assets/userLogin/signout.png"
 
 import { getCurrencyList } from "../../../../api/user";
 
@@ -30,6 +31,12 @@ export const Mobile = () => {
     navigate("/exchange",{ state: {currency:item.currency,currencyName:item.name} });
   };
 
+  const signOut = async () =>{
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+  }
+
   useEffect(() => {
     getCurrencyInfo();
   }, []);
@@ -43,6 +50,9 @@ export const Mobile = () => {
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
             <img className={styles.logo} src={Logo}></img>
+          </div>
+          <div className={styles.signOutBlock}>
+            <img onClick={signOut} className={styles.signOut} src={SignOut}></img>
           </div>
         </div>
 

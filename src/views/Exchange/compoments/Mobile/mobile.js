@@ -9,6 +9,7 @@ import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
 import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
+import SignOut from "../../../../assets/userLogin/signout.png"
 
 import {
   getCurrencyList,
@@ -31,6 +32,8 @@ export const Mobile = () => {
   const [sliderNum, setSliderNum] = useState("-");
 
   const [thresholdValue, setThresholdValue] = useState();
+
+  const navigate = useNavigate();
 
   const changeType = (item) => {
     setTimeout(() => {
@@ -75,6 +78,13 @@ export const Mobile = () => {
     setSliderTotle(data.data.balance);
   };
 
+  const signOut = async () =>{
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+  }
+
+
   useEffect(() => {
     getCurrencyInfo();
     getExchangeNum(currencyType);
@@ -91,6 +101,9 @@ export const Mobile = () => {
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
             <img className={styles.logo} src={Logo}></img>
+          </div>
+          <div className={styles.signOutBlock}>
+            <img onClick={signOut} className={styles.signOut} src={SignOut}></img>
           </div>
         </div>
 
