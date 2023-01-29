@@ -46,6 +46,10 @@ export default class HomeMobileAn extends Component {
         localStorage.setItem("token", "");
       }else{
         localStorage.setItem("token", search[1]);
+        setTimeout(() => {
+          window.location.href='/#/currency'
+        }, 500);
+       
       }
     }
     

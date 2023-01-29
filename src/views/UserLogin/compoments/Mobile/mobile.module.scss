@@ -71,6 +71,8 @@
                     }
                 }
                 .buttonRight{
+                    display: flex;
+                    align-items: center;
                    .buttonArrow{
                     width: 0.15rem;
                    }
