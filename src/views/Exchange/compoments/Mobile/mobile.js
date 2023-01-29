@@ -119,14 +119,16 @@ export const Mobile = () => {
                   step={0.01}
                   onChange={onChange}
                 /> */}
-                <div className={styles.middelLine}></div>
-                <div className={styles.middeImg}>
-                  <img
+                <div className={styles.middelLine}>
+
+                <img
                     className={styles.middleArrowImg}
                     src={MiddleArrow}
                     alt=""
                   ></img>
                 </div>
+             
+                  
               </div>
               <div className={styles.bottom}>
                 <div className={styles.exNum}>{sliderNum}</div>

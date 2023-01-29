@@ -40,12 +40,12 @@ export const PC = () => {
 
 const getToken = ()=>{
   console.log(localStorage.getItem("token"))
-  if (
-    localStorage.getItem("token") !== '' &&
-    localStorage.getItem("token") !== 'undefined'
-  ) {
-    navigate('/currency')
-  }
+  // if (
+  //   localStorage.getItem("token") !== '' &&
+  //   localStorage.getItem("token") !== 'undefined'
+  // ) {
+  //   navigate('/currency')
+  // }
 }
 
 //google登录
@@ -111,9 +111,9 @@ const loginFB = async () =>{
         </div>
 
         <div className={styles.bottomBlock}>
-          <div className={styles.contentBlock}>
+          {/* <div className={styles.contentBlock}>
             <img className={styles.contentImg} src={Content} alt=''></img>
-          </div>
+          </div> */}
           <div className={styles.buttons}>
             <div className={`${styles.button} ${styles.buttonEmail}`} onClick={()=>{goEmailPage()}}>
               <div className={styles.buttonLeft}>

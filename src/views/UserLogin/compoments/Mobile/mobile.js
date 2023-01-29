@@ -40,12 +40,12 @@ export const Mobile = () => {
 
 const getToken = ()=>{
   console.log(localStorage.getItem("token"))
-  if (
-    localStorage.getItem("token") !== '' &&
-    localStorage.getItem("token") !== 'undefined'
-  ) {
-    navigate('/currency')
-  }
+  // if (
+  //   localStorage.getItem("token") !== '' &&
+  //   localStorage.getItem("token") !== 'undefined'
+  // ) {
+  //   navigate('/currency')
+  // }
 }
 
 //google登录

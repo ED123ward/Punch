@@ -87,18 +87,19 @@
                         height: 0.02rem;
                         background: rgba(255, 255, 255, 0.2);
                         border-radius: 0.31rem;
+                        text-align: center;
                     }
 
-                    .middeImg {
-                        position: absolute;
-                        top: 0.1rem;
-                        left: 2.5rem;
+                  
 
                         .middleArrowImg {
+                            position: absolute;
+                            top: -0.12rem;
+                            left: 2.5rem;
                             width: 0.31rem;
                             height: 0.31rem;
                         }
-                    }
+                    
                 }
 
                 .bottom {
