@@ -1,0 +1,83 @@
+.page {
+    background: linear-gradient(180deg, #1F1C33 0%, #403870 100%);
+    height: 100vh;
+    overflow: hidden;
+
+    .pageBackground {
+        position: absolute;
+        top: 0;
+
+        .pageBackgroundImg {
+            width: 100%;
+        }
+    }
+
+    .headBlock {
+        position: relative;
+
+        .logoBlock {
+            margin: 0.38rem 0 0 0.38rem;
+            text-align: left;
+        }
+
+        .logo {
+            width: 0.73rem;
+        }
+    }
+
+    .bodyBlock {
+        position: relative;
+        margin-top: 0.85rem;
+
+        .textBlock {
+           text-align: center;
+            font-size: 0.38rem;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 0.38rem;
+        }
+
+        .currencyLineBlock {
+            position: relative;
+            margin-top: 0.61rem;
+            .currencyLine {
+                width: 4.27rem;
+                height: 0.76rem;
+                border-radius: 0.31rem;
+                background: rgba(255, 255, 255, 0.4);
+                margin: 0 auto 0.31rem auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #FFFFFF;
+                font-size: 0.3rem;
+                padding: 0 0.31rem 0 0.23rem;
+                border: 0.04rem solid rgba(255, 255, 255, 0);
+                .left{
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    .icon{
+                        margin-right: 0.15rem;
+                        .iconImg{
+                            width: 0.5rem;
+                        }
+                    }
+                    .name{
+                        font-weight: 500;
+                    }
+                }
+                
+                .right{
+                    .simpleName{
+                        font-weight: 900;
+                    }
+                }
+            }
+            .currencyLineActive{
+                border: 0.04rem solid #FFC147;
+            }
+        }
+    }
+
+}

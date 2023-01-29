@@ -15,7 +15,7 @@ export default class Currency extends Component {
     if (isMobile) {
       return <Mobile />;
     } else {
-      return <Mobile />;
+      return <PC />;
     }
   }
 }

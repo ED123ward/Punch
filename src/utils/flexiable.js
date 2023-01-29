@@ -85,6 +85,8 @@
             width_x = 750
         }
 
+        console.log(width_x)
+
 
         var rem = width / width_x * 100;
         docEl.style.fontSize = rem + 'px';

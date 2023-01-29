@@ -15,7 +15,7 @@ export default class EmailLogin extends Component {
     if (isMobile) {
       return <Mobile />;
     } else {
-      return <Mobile />;
+      return <PC />;
     }
   }
 }

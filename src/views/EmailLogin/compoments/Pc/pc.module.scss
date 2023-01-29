@@ -1,0 +1,214 @@
+.page {
+    background: linear-gradient(180deg, #1F1C33 0%, #403870 100%);
+    height: 100vh;
+    overflow: hidden;
+
+    .pageBackground {
+        position: absolute;
+        top: 0;
+
+        .pageBackgroundImg {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    .headBlock {
+        position: relative;
+        text-align: left;
+
+        .pageBlackArrow {
+            position: relative;
+            width: 0.15rem;
+            margin: 0.54rem 0 0 0.54rem;
+        }
+
+    }
+    .bodyBlock{
+        position: relative;
+        margin-top: 1.2rem;
+        text-align: left;
+        .inputText {
+            text-align: center;
+            font-weight: 500;
+            color: #FFFFFF;
+            font-size: 0.38rem;
+            line-height: 38px;
+            margin-bottom: 0.9rem;
+        }
+        .input {
+            position: relative;
+            width: 5.07rem;
+            margin: 0 auto;
+            margin-bottom: 0.4rem;
+
+            font-family: Nunito-Bold, Nunito;
+
+            .inputStyleAn {
+                border: none;
+                width: 2.38rem;
+                height: 0.5rem;
+                background: rgba(239, 253, 255, 0.5);
+                border-radius: 0.16rem;
+                opacity: 1;
+                padding: 0 0.15rem 0 0.15rem;
+                font-size: 16rem;
+                font-weight: bold;
+                color: #4B5879;
+                opacity: 0.5;
+                display: block;
+
+                font-family: Nunito-Bold, Nunito;
+
+            }
+
+            .inputStyleAn:focus {
+                //获取焦点
+                // outline: 0.01rem solid #FFD24B;
+                // -moz-outline-radius: 0.16rem;
+                opacity: 0.8;
+                outline: none;
+
+                font-family: Nunito-Bold, Nunito;
+            }
+
+            .inputStyle {
+                border: none;
+                width: 4.77rem;
+                height: 0.66rem;
+                background: #FFFFFF;
+                border-radius: 0.16rem;
+                opacity: 1;
+                padding: 0 0.15rem 0 0.16rem;
+                font-size: 0.16rem;
+                font-weight: bold;
+                color: #4B5879;
+                opacity: 0.5;
+                display: block;
+                font-family: Nunito-Bold, Nunito;
+            }
+
+            .inputStyle:focus {
+                //获取焦点
+                outline: none;
+                opacity: 0.8;
+                font-family: Nunito-Bold, Nunito;
+                // box-shadow: 0 0 0 0.01rem #FFD24B;
+                // background: #ffffff;
+
+            }
+
+            .emailDeleteBlock {
+                position: absolute;
+                height: 0.96rem;
+                display: flex;
+                align-items: center;
+                top: -0.15rem;
+                right: 0.2rem;
+
+                .deleteImg {
+                    width: 0.9rem;
+                    height: 0.9rem;
+                }
+
+                .passImg {
+                    width: 0.3rem;
+                    height: 0.3rem;
+                }
+            }
+
+            .errorShow {
+                font-size: 0.2rem;
+                font-weight: bold;
+                color: #FF4646;
+                padding: 0.1rem 0.12rem;
+                position: absolute;
+                bottom: -0.4rem;
+
+            }
+
+            .sendCodeBlock {
+                position: absolute;
+                top: 0;
+                right: 0.16rem;
+                height: 0.5rem;
+                display: flex;
+                align-items: center;
+
+               
+
+         
+
+                .sendCodeLoad {}
+
+            }
+
+            .passwordRuleBlock {
+                display: inline-block;
+                height: 1rem;
+
+                .passWordTitle {
+                    font-size: 0.16rem;
+                    font-weight: bold;
+                    color: #FFFFFF;
+                    margin-top: 0.16rem;
+                }
+
+                .passWordRuleLine {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    margin-top: 0.12rem;
+
+                    .ruleIconBlock {
+                        width: 0.09rem;
+                        height: 0.07rem;
+                        font-size: 0.1rem;
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+                        font-family: Nunito-Bold, Nunito;
+
+                        .ruleIcon {
+                            width: 0.09rem;
+                            height: 0.07rem;
+                            position: relative;
+                            top: 0.01rem;
+                        }
+                    }
+
+                    .ruleText {
+                        font-size: 0.1rem;
+                        font-weight: bold;
+                        color: #60FF46;
+                        margin-left: 0.08rem;
+                        font-family: Nunito-Bold, Nunito;
+                    }
+
+                    .ruleTextError {
+                        color: #FF4646 !important;
+                        font-family: Nunito-Bold, Nunito;
+                    }
+
+                }
+            }
+
+
+
+        }
+    }
+
+
+    .bottomBlock{
+        position: relative;
+        margin-top: 1rem;
+        width: 100%;
+        .button{
+            width: 3rem;
+        }
+    }
+
+    
+
+
+}

@@ -15,7 +15,7 @@ export default class UserLogin extends Component {
     if (isMobile) {
       return <Mobile />;
     } else {
-      return <Mobile />;
+      return <PC />;
     }
   }
 }

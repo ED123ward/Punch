@@ -1,0 +1,91 @@
+.page {
+    background: linear-gradient(180deg, #1F1C33 0%, #403870 100%);
+    height: 100vh;
+    overflow: hidden;
+
+    .pageBackground{
+        position: absolute;
+        top: 0;
+        .pageBackgroundImg{
+            width: 100%;
+        }
+    }
+    .headBlock{
+        position: relative;
+        .logoBlock{
+            margin: 0.38rem 0 0 0.38rem;
+            text-align: left;
+        }
+        .logo{
+            width: 0.73rem;
+        }
+    }
+    .bodyBlock{
+        position: relative;
+        .textBlock{
+            margin-top: 1.04rem;
+            .textImg{
+                width: 3.69rem;
+            }
+        }
+    }
+    .bottomBlock{
+        position: absolute;
+        bottom: 1.08rem;
+        width: 100%;
+        text-align: center;
+        .contentBlock{
+            .contentImg{
+                width: 3.25rem;
+            }
+        }
+        .buttons{
+            margin-top: 0.47rem;
+            cursor: pointer;
+            .button{
+                width: 4rem;
+                height: 0.72rem;
+                border-radius: 0.92rem;
+                padding: 0 0.52rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 auto 0.31rem auto;
+                .buttonLeft{
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    .buttonIcon{
+                        width: 0.33rem;
+                    }
+                    .buttonText{
+                        font-size: 0.27rem;
+                        color: #ffffff;
+                        font-weight: 500;
+                        margin-left: 0.15rem;
+                    }
+                    .buttonTextBlack{
+                        font-size: 0.27rem;
+                        color: #000000;
+                        font-weight: 500;
+                        margin-left: 0.15rem;
+                    }
+                }
+                .buttonRight{
+                   .buttonArrow{
+                    width: 0.15rem;
+                   }
+                }
+            }
+            .buttonEmail{
+                background-color: #E54343
+            }
+            .buttonGoogel{
+                background-color: #ffffff
+            }
+            .buttonFacebook{
+                background-color: #3072F2
+            }
+        }
+    }
+}
