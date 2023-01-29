@@ -17,6 +17,8 @@ import LoginArrowWhite from "../../../../assets/userLogin/login_arrow_white.png"
 import useGoogle from "../../../../hooks/google";
 import useFB from "../../../../hooks/facebook"
 
+import { loginActive } from "../../../../api/user";
+
 
 
 
@@ -45,6 +47,38 @@ const getToken = ()=>{
     navigate('/currency')
   }
 }
+
+//google登录
+const loginGoogle = async () =>{
+  let data = await handleLoginGoogle()
+  if(data.length !== 0){
+    openId(data[0].uid)
+  }else{
+    alert('error')
+  }
+}
+
+  //登录
+  const openId = async (openId) => {
+    let query = {
+      loginType: 4,
+      openId:openId
+    };
+
+    let data = await loginActive(query);
+    if (data.code === 200 && data.msg === "success") {
+      if (
+        localStorage.getItem("token") == null ||
+        localStorage.getItem("token") === undefined
+      ) {
+        localStorage.setItem("token", "");
+      }
+      localStorage.setItem("token", data.data);
+      navigate("/currency");
+    } else {
+      alert(data.msg);
+    }
+  };
 
 
   useEffect(() => {
@@ -83,7 +117,7 @@ const getToken = ()=>{
                 <img src={LoginArrowWhite} className={styles.buttonArrow} alt=''></img>
               </div>
             </div>
-            <div className={`${styles.button} ${styles.buttonGoogel}`} onClick={handleLoginGoogle}>
+            <div className={`${styles.button} ${styles.buttonGoogel}`} onClick={loginGoogle}>
               <div className={styles.buttonLeft}>
                 <img src={LoginIcon3} className={styles.buttonIcon} alt=''></img>
                 <div className={`${styles.buttonText} ${styles.buttonTextBlack}`}>Continue with Google</div>
