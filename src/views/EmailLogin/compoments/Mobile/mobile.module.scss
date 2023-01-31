@@ -205,8 +205,8 @@
 
 
     .bottomBlock {
-        position: absolute;
-        bottom: 2rem;
+        position: relative;
+       margin-top: 4rem;
         width: 100%;
 
         .button {

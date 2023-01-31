@@ -41,10 +41,23 @@ export const Mobile = () => {
       setCurrencyType(item.currency);
       setShowChange("hide");
       setCurrencyTypeName(item.name);
+      exchangeActive(item)
     }, 100);
 
     getExchangeNum(item.currency);
+
   };
+
+  //计算汇率
+  const exchangeActive = (item) =>{
+    if(item.exchangeRate != null){
+      let num = ((Math.floor(parseFloat(sliderTotle) * parseFloat(item.exchangeRate)*1000))/1000).toFixed(2)
+      console.log(num)
+      setSliderNum(num)
+    }else{
+      setSliderNum('-')
+    }
+  }
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
