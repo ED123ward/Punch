@@ -18,12 +18,20 @@
         position: relative;
 
         .logoBlock {
+            width: 13.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 0.38rem 0 0 0.38rem;
             text-align: left;
         }
 
         .logo {
             width: 0.73rem;
+        }
+        .headButton{
+            height: 0.6rem;
+            cursor: pointer;
         }
     }
 
@@ -48,6 +56,7 @@
                     line-height: 0.23rem;
                     font-weight: 500;
                     color: #FFFFFF;
+                    font-family: Murecho-Medium;
 
                 }
 
@@ -57,6 +66,7 @@
                     font-weight: 800;
                     color: #FDFAED;
                     line-height: 0.46rem;
+                    font-family: Murecho-Medium;
                 }
 
                 .slider {
@@ -114,6 +124,7 @@
                             color: #FFFFFF;
                             line-height: 0.27rem;
                             margin-right: 0.3rem;
+                            font-family: Murecho-Medium;
                         }
 
                         .bottomArrowIconBlock {
@@ -160,6 +171,7 @@
                                     color: #000000;
                                     font-size: 0.27rem;
                                     margin-left: 0.15rem;
+                                    font-family: Murecho-Medium;
                                 }
                             }
                         }
@@ -174,6 +186,7 @@
                     .exNum {
                         font-size: 0.46rem;
                         font-weight: 800;
+                        font-family: Murecho-Medium;
                     }
                 }
             }
@@ -190,6 +203,7 @@
         font-weight: 500;
         color: #FF3E14;
         line-height: 0.43rem;
+        font-family: Murecho-Medium;
     }
 
 }

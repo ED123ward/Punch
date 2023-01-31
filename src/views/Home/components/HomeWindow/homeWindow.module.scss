@@ -115,12 +115,18 @@
             position: relative;
             width: 0.72rem;
             padding: 0.8rem;
-
             z-index: 99;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 12.6rem;
 
-            img {
+            .logoImg {
                 width: 0.72rem;
-
+            }
+            .loginButton{
+                height: 0.6rem;
+                cursor: pointer;
             }
         }
         .logoBlocksecont{

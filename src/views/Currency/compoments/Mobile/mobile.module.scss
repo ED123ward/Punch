@@ -28,13 +28,15 @@
         .logo {
             width: 0.73rem;
         }
-        .signOutBlock{
+
+        .signOutBlock {
             margin-right: 0.31rem;
             text-align: left;
             display: flex;
             align-items: center;
         }
-        .signOut{
+
+        .signOut {
             height: 0.65rem;
         }
     }
@@ -50,11 +52,13 @@
             font-weight: 500;
             color: #FFFFFF;
             line-height: 0.38rem;
+            font-family: Nunito-Bold, Nunito;
         }
 
         .currencyLineBlock {
             position: relative;
             margin-top: 0.61rem;
+
             .currencyLine {
                 width: 5.27rem;
                 height: 0.96rem;
@@ -68,30 +72,39 @@
                 font-size: 0.31rem;
                 padding: 0 0.31rem 0 0.23rem;
                 border: 0.04rem solid rgba(255, 255, 255, 0);
-                .left{
+
+                .left {
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    .icon{
+
+                    .icon {
                         margin-right: 0.15rem;
                         display: flex;
                         align-items: center;
-                        .iconImg{
+
+                        .iconImg {
                             width: 0.5rem;
                         }
                     }
-                    .name{
+
+                    .name {
                         font-weight: 500;
+
+                        font-family: Murecho-Medium;
                     }
                 }
-                
-                .right{
-                    .simpleName{
+
+                .right {
+                    .simpleName {
                         font-weight: 900;
+
+                        font-family: Murecho-Medium;
                     }
                 }
             }
-            .currencyLineActive{
+
+            .currencyLineActive {
                 border: 0.04rem solid #FFC147;
             }
         }

@@ -9,7 +9,8 @@ import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
 import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
-import SignOut from "../../../../assets/userLogin/signout.png"
+import SignOut from "../../../../assets/userLogin/signout.png";
+import CaseOut from "../../../../assets/userLogin/cashOut.png";
 
 import {
   getCurrencyList,
@@ -78,12 +79,11 @@ export const Mobile = () => {
     setSliderTotle(data.data.balance);
   };
 
-  const signOut = async () =>{
+  const signOut = async () => {
     setTimeout(() => {
       navigate("/");
     }, 500);
-  }
-
+  };
 
   useEffect(() => {
     getCurrencyInfo();
@@ -103,7 +103,11 @@ export const Mobile = () => {
             <img className={styles.logo} src={Logo}></img>
           </div>
           <div className={styles.signOutBlock}>
-            <img onClick={signOut} className={styles.signOut} src={SignOut}></img>
+            <img
+              onClick={signOut}
+              className={styles.signOut}
+              src={SignOut}
+            ></img>
           </div>
         </div>
 
@@ -120,15 +124,12 @@ export const Mobile = () => {
                   onChange={onChange}
                 /> */}
                 <div className={styles.middelLine}>
-
-                <img
+                  <img
                     className={styles.middleArrowImg}
                     src={MiddleArrow}
                     alt=""
                   ></img>
                 </div>
-             
-                  
               </div>
               <div className={styles.bottom}>
                 <div className={styles.exNum}>{sliderNum}</div>
@@ -188,6 +189,10 @@ export const Mobile = () => {
         ) : (
           <div className={styles.showText}>CONVERSION RATE MAY VARY.</div>
         )}
+
+        <div className={styles.caseOutButton}>
+          <img className={styles.caseOutImg} src={CaseOut} alt=""></img>
+        </div>
       </div>
     </>
   );

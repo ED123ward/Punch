@@ -16,12 +16,20 @@
         position: relative;
 
         .logoBlock {
+            width: 13.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 0.38rem 0 0 0.38rem;
             text-align: left;
         }
 
         .logo {
             width: 0.73rem;
+        }
+        .headButton{
+            height: 0.6rem;
+            cursor: pointer;
         }
     }
 
@@ -35,6 +43,7 @@
             font-weight: 500;
             color: #FFFFFF;
             line-height: 0.38rem;
+            font-family: Nunito-Bold, Nunito;
         }
 
         .currencyLineBlock {
@@ -59,18 +68,22 @@
                     align-items: center;
                     .icon{
                         margin-right: 0.15rem;
+                        display: flex;
+                        align-items: center;
                         .iconImg{
                             width: 0.5rem;
                         }
                     }
                     .name{
                         font-weight: 500;
+                        font-family: Murecho-Medium;
                     }
                 }
                 
                 .right{
                     .simpleName{
                         font-weight: 900;
+                        font-family: Murecho-Medium;
                     }
                 }
             }

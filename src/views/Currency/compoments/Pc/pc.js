@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./pc.module.scss";
 
-import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
+import SignOut from "../../../../assets/userLogin/signout.png"
 
 import { getCurrencyList } from "../../../../api/user";
 
 export const PC = () => {
-  const [currencyType, setCurrencyType] = useState(1);
+  const [currencyType, setCurrencyType] = useState();
   const [currencyList, setCurrencyList] = useState([]);
 
   const navigate = useNavigate();
@@ -24,11 +24,22 @@ export const PC = () => {
   };
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
-    setCurrencyList(data.data);
+    if(data.code === 200){
+      setCurrencyList(data.data);
+    }else{
+      alert(data.msg)
+    }
+    
   };
   const goExchange = async (item) => {
     navigate("/exchange",{ state: {currency:item.currency,currencyName:item.name} });
   };
+
+  const signOut = async () =>{
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+  }
 
   useEffect(() => {
     getCurrencyInfo();
@@ -42,7 +53,8 @@ export const PC = () => {
 
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
-            <img className={styles.logo} src={Logo}></img>
+            <img className={styles.logo} src={Logo} alt=""></img>
+            <img onClick={signOut} className={styles.headButton} src={SignOut} alt=""></img>
           </div>
         </div>
 

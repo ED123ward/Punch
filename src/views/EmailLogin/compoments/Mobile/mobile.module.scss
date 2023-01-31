@@ -24,10 +24,12 @@
         }
 
     }
-    .bodyBlock{
+
+    .bodyBlock {
         position: relative;
         margin-top: 1.02rem;
         text-align: left;
+
         .inputText {
             font-weight: 500;
             color: #FFFFFF;
@@ -35,7 +37,9 @@
             line-height: 38px;
             margin-left: 1.17rem;
             margin-bottom: 0.5rem;
+            font-family: Nunito-Bold;
         }
+
         .input {
             position: relative;
             width: 5.77rem;
@@ -118,12 +122,13 @@
             }
 
             .errorShow {
-                font-size: 0.12rem;
+                font-size: 0.24rem;
                 font-weight: bold;
                 color: #FF4646;
                 padding: 0.1rem 0.12rem;
                 position: absolute;
                 bottom: -0.7rem;
+                font-family: Nunito-Bold, Nunito;
 
             }
 
@@ -135,9 +140,9 @@
                 display: flex;
                 align-items: center;
 
-               
 
-         
+
+
 
                 .sendCodeLoad {}
 
@@ -199,16 +204,17 @@
     }
 
 
-    .bottomBlock{
+    .bottomBlock {
         position: absolute;
         bottom: 2rem;
         width: 100%;
-        .button{
+
+        .button {
             width: 4.4rem;
         }
     }
 
-    
+
 
 
 }

@@ -3,3 +3,11 @@
   src: url('./DS-DIGIB.TTF');
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Murecho-Medium';
+  src: url('./Murecho-Medium.ttf');
+  font-display: swap;
+}
+
+

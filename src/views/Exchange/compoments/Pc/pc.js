@@ -9,6 +9,8 @@ import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
 import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
+import SignOut from "../../../../assets/userLogin/signout.png"
+import CaseOut from "../../../../assets/userLogin/cashOut.png"
 
 import {
   getCurrencyList,
@@ -31,6 +33,7 @@ export const PC = () => {
   const [sliderNum, setSliderNum] = useState("-");
 
   const [thresholdValue, setThresholdValue] = useState();
+  const navigate = useNavigate();
 
   const changeType = (item) => {
     setTimeout(() => {
@@ -74,6 +77,11 @@ export const PC = () => {
     let data = await getCurrencyBalance(query);
     setSliderTotle(data.data.balance);
   };
+  const signOut = async () =>{
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+  }
 
   useEffect(() => {
     getCurrencyInfo();
@@ -88,6 +96,7 @@ export const PC = () => {
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
             <img className={styles.logo} src={Logo}></img>
+            <img onClick={signOut} className={styles.headButton} src={SignOut} alt=""></img>
           </div>
         </div>
 
@@ -170,6 +179,10 @@ export const PC = () => {
         ) : (
           <div className={styles.showText}>CONVERSION RATE MAY VARY.</div>
         )}
+
+        <div className={styles.caseOutButton}>
+          <img className={styles.caseOutImg} src={CaseOut} alt=""></img>
+        </div> 
       </div>
     </>
   );

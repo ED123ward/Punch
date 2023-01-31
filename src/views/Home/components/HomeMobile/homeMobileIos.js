@@ -185,16 +185,16 @@ export default class HomeMobileAn extends Component {
           </div>
           <div className={styles.topLine}>
             <div className={styles.logoBlock}>
-              <img src={LogoText} />
+              <img src={LogoText} alt="" />
             </div>
             <div className={styles.loginButton}>
-              <img className={styles.loginButtonImg} src={UserLogin} onClick={()=>{this.goUserLogin()}} />
+              <img className={styles.loginButtonImg} src={UserLogin} onClick={()=>{this.goUserLogin()}} alt="" />
             </div>
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
               <div>
-                <img className={styles.headImgAStyle} src={HeadImg} />
+                <img className={styles.headImgAStyle} src={HeadImg} alt="" />
               </div>
               {/* <div className={styles.timeText}>{this.state.Days}</div>
               <div className={`${styles.fontFamily}`}>:</div>

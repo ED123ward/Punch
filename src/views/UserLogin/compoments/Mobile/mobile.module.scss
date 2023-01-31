@@ -3,45 +3,56 @@
     height: 100vh;
     overflow: hidden;
 
-    .pageBackground{
+    .pageBackground {
         position: absolute;
         top: 0;
-        .pageBackgroundImg{
+
+        .pageBackgroundImg {
             width: 100%;
         }
     }
-    .headBlock{
+
+    .headBlock {
         position: relative;
-        .logoBlock{
+
+        .logoBlock {
             margin: 0.38rem 0 0 0.38rem;
             text-align: left;
         }
-        .logo{
+
+        .logo {
             width: 0.73rem;
         }
     }
-    .bodyBlock{
+
+    .bodyBlock {
         position: relative;
-        .textBlock{
+
+        .textBlock {
             margin-top: 1.04rem;
-            .textImg{
+
+            .textImg {
                 width: 4.69rem;
             }
         }
     }
-    .bottomBlock{
+
+    .bottomBlock {
         position: absolute;
         bottom: 1.08rem;
         width: 100%;
         text-align: center;
-        .contentBlock{
-            .contentImg{
+
+        .contentBlock {
+            .contentImg {
                 width: 3.25rem;
             }
         }
-        .buttons{
+
+        .buttons {
             margin-top: 0.77rem;
-            .button{
+
+            .button {
                 width: 5.58rem;
                 height: 0.92rem;
                 border-radius: 0.92rem;
@@ -50,41 +61,51 @@
                 justify-content: space-between;
                 align-items: center;
                 margin: 0 auto 0.31rem auto;
-                .buttonLeft{
+
+                .buttonLeft {
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    .buttonIcon{
+
+                    .buttonIcon {
                         width: 0.33rem;
                     }
-                    .buttonText{
+
+                    .buttonText {
                         font-size: 0.27rem;
                         color: #ffffff;
                         font-weight: 500;
                         margin-left: 0.15rem;
+                        font-family: Murecho-Medium;
                     }
-                    .buttonTextBlack{
+
+                    .buttonTextBlack {
                         font-size: 0.27rem;
                         color: #000000;
                         font-weight: 500;
                         margin-left: 0.15rem;
                     }
                 }
-                .buttonRight{
+
+                .buttonRight {
                     display: flex;
                     align-items: center;
-                   .buttonArrow{
-                    width: 0.15rem;
-                   }
+
+                    .buttonArrow {
+                        width: 0.15rem;
+                    }
                 }
             }
-            .buttonEmail{
+
+            .buttonEmail {
                 background-color: #E54343
             }
-            .buttonGoogel{
+
+            .buttonGoogel {
                 background-color: #ffffff
             }
-            .buttonFacebook{
+
+            .buttonFacebook {
                 background-color: #3072F2
             }
         }

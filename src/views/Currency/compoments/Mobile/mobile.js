@@ -11,7 +11,7 @@ import SignOut from "../../../../assets/userLogin/signout.png"
 import { getCurrencyList } from "../../../../api/user";
 
 export const Mobile = () => {
-  const [currencyType, setCurrencyType] = useState(1);
+  const [currencyType, setCurrencyType] = useState();
   const [currencyList, setCurrencyList] = useState([]);
 
   const navigate = useNavigate();
@@ -25,7 +25,12 @@ export const Mobile = () => {
   };
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
-    setCurrencyList(data.data);
+    if(data.code === 200){
+      setCurrencyList(data.data);
+    }else{
+      alert(data.msg)
+    }
+    
   };
   const goExchange = async (item) => {
     navigate("/exchange",{ state: {currency:item.currency,currencyName:item.name} });

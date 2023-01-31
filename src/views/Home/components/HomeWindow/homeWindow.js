@@ -11,21 +11,13 @@ import { ScrollPercentage } from "react-scroll-percentage";
 
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
-import DayUnit from "../../../../assets/home/Days.png";
-import HoursUnit from "../../../../assets/home/Hours.png";
-import MinutesUnit from "../../../../assets/home/Minutes.png";
-import SecondsUnit from "../../../../assets/home/Seconds.png";
 import LeanMoreImg from "../../../../assets/home/leanMore.png"
-
-import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
-import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
-import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
-import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
 import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png"
 import Discover from "../../../../assets/home/Discover our games.png"
 
 import HeadImg from "../../../../assets/home/headImg.png"
+import UserLogin from "../../../../assets/home/userLogin.png";
 
 import BoxingSlider from "./boxingSlider";
 
@@ -116,6 +108,9 @@ export default class HomeWindow extends Component {
   goTop = () => {
     window.scrollTo(0, 0);
   };
+  goCash = () =>{
+    window.location.href = "/#/userlogin";
+  }
   scrollPage = () =>{
     let height = document.body.clientHeight;
     window.scrollTo(0, height*0.03);
@@ -178,10 +173,20 @@ export default class HomeWindow extends Component {
           >
             <div className={`${styles.logoBlock}`}>
               <img
+               className={styles.logoImg}
                 onClick={() => {
                   this.goTop();
                 }}
                 src={LogoText}
+                alt=""
+              />
+               <img
+               className={styles.loginButton}
+                onClick={() => {
+                  this.goCash();
+                }}
+                src={UserLogin}
+                alt=""
               />
             </div>
 

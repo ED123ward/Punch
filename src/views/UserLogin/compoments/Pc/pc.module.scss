@@ -63,6 +63,7 @@
                         color: #ffffff;
                         font-weight: 500;
                         margin-left: 0.15rem;
+                        font-family: Nunito-Bold, Nunito;
                     }
                     .buttonTextBlack{
                         font-size: 0.27rem;
@@ -72,6 +73,8 @@
                     }
                 }
                 .buttonRight{
+                    display: flex;
+                    align-items: center;
                    .buttonArrow{
                     width: 0.15rem;
                    }
