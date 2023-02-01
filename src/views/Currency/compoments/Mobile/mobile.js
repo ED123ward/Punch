@@ -10,6 +10,8 @@ import SignOut from "../../../../assets/userLogin/signout.png"
 
 import { getCurrencyList } from "../../../../api/user";
 
+import { message } from 'antd';
+
 export const Mobile = () => {
   const [currencyType, setCurrencyType] = useState();
   const [currencyList, setCurrencyList] = useState([]);
@@ -28,7 +30,10 @@ export const Mobile = () => {
     if(data.code === 200){
       setCurrencyList(data.data);
     }else{
-      alert(data.msg)
+      message.info(data.msg);
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
     }
     
   };

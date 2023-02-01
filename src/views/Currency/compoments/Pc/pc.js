@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./pc.module.scss";
 
+import { message } from 'antd';
+
 import Logo from "../../../../assets/userLogin/logoText.png";
 import SignOut from "../../../../assets/userLogin/signout.png"
 
@@ -27,7 +29,10 @@ export const PC = () => {
     if(data.code === 200){
       setCurrencyList(data.data);
     }else{
-      alert(data.msg)
+      message.info(data.msg);
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
     }
     
   };

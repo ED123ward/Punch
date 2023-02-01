@@ -20,6 +20,7 @@ import {
 
 export const Mobile = () => {
   const state = useLocation();
+  console.log(state);
   const [currencyType, setCurrencyType] = useState(state.state.currency);
   const [currencyTypeName, setCurrencyTypeName] = useState(
     state.state.currencyName
@@ -41,31 +42,39 @@ export const Mobile = () => {
       setCurrencyType(item.currency);
       setShowChange("hide");
       setCurrencyTypeName(item.name);
-      exchangeActive(item)
+      exchangeActive(item);
     }, 100);
 
     getExchangeNum(item.currency);
-
   };
 
   //计算汇率
-  const exchangeActive =  (item) =>{
-    console.log(item)
-    if(item.exchangeRate != null && sliderTotle !== 0){
-      console.log(sliderTotle)
-      let num = ((Math.floor(parseFloat(sliderTotle) * parseFloat(item.exchangeRate)*1000))/1000).toFixed(2)
-      console.log(num)
-      setSliderNum(num)
-    }else{
-      setSliderNum('-')
+  const exchangeActive = (item) => {
+    console.log(item);
+    if (item.exchangeRate != null && sliderTotle !== 0) {
+      console.log(sliderTotle);
+      let num = (
+        Math.floor(
+          parseFloat(sliderTotle) * parseFloat(item.exchangeRate) * 1000
+        ) / 1000
+      ).toFixed(item.scale);
+      console.log(num);
+      setSliderNum(num);
+    } else {
+      setSliderNum("-");
     }
-  }
+  };
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
-    console.log(data)
+    console.log(data);
     setCurrencyList(data.data);
-      exchangeActive(data.data[0])
+    data.data.map((item, index) => {
+      if(item.currency === currencyType){
+        exchangeActive(item);
+      }
+    });
+    
   };
 
   const onChange = (value) => {
@@ -93,7 +102,8 @@ export const Mobile = () => {
       currency: "voucher",
     };
     let data = await getCurrencyBalance(query);
-    setSliderTotle(data.data.balance);
+    let num =  (Math.floor(parseFloat(data.data.balance)* 100) / 100).toFixed(2);
+    setSliderTotle(num);
   };
 
   const signOut = async () => {

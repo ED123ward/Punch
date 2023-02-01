@@ -65,8 +65,14 @@ export const PC = () => {
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
+    console.log(data);
     setCurrencyList(data.data);
-    exchangeActive(data.data[0]);
+    data.data.map((item, index) => {
+      if(item.currency === currencyType){
+        exchangeActive(item);
+      }
+    });
+    
   };
 
   const onChange = (value) => {
@@ -94,7 +100,9 @@ export const PC = () => {
       currency: "voucher",
     };
     let data = await getCurrencyBalance(query);
-    setSliderTotle(data.data.balance);
+    let num =  (Math.floor(parseFloat(data.data.balance)* 100) / 100).toFixed(2);
+    console.log(num)
+    setSliderTotle(num);
   };
   const signOut = async () => {
     setTimeout(() => {

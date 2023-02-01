@@ -35,23 +35,7 @@ export default class HomeMobileAn extends Component {
   //获得token
 
   getUrlQuery = () =>{
-    let location = window.location;
-    let search = location.hash.split("?token=");
-    if(search !== undefined){
-      console.log(search[1]);
-      if (
-        search[1] == null ||
-        search[1] === undefined
-      ) {
-        localStorage.setItem("token", "");
-      }else{
-        localStorage.setItem("token", search[1]);
-        setTimeout(() => {
-          window.location.href='/#/currency'
-        }, 500);
-       
-      }
-    }
+    
     
   }
 
@@ -116,9 +100,29 @@ export default class HomeMobileAn extends Component {
     );
   };
 
+  static getDerivedStateFromProps(props, state) {
+    let location = window.location;
+    let search = location.hash.split("?token=");
+    if(search !== undefined){
+      console.log(search[1]);
+      if (
+        search[1] == null ||
+        search[1] === undefined
+      ) {
+        localStorage.setItem("token", "");
+      }else{
+        localStorage.setItem("token", search[1]);
+        setTimeout(() => {
+          window.location.href='/#/currency'
+        }, 500);
+       
+      }
+    }
+    }
+
   componentDidMount() {
+   
     this.watchVideo();
-    this.getUrlQuery()
     setInterval(() => {
       this.showTime();
     }, 1000);
