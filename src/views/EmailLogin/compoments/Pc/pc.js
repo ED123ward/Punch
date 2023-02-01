@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CryptoJs from "crypto-js";
 
+import { message } from 'antd';
+
 import styles from "./pc.module.scss";
 
 import Background from "../../../../assets/userLogin/background.png";
@@ -108,11 +110,13 @@ export const PC = () => {
     let eValue = emailInput.current.value;
     let pValue = passInput.current.value;
     if (eValue === "" || emailErrorStatue) {
-      alert("Please enter the correct email address!");
+      // alert("Please enter the correct email address!");
+      message.info('Please enter the correct email address!');
       return;
     }
     if (pValue === "" || (!passLength && !passAa && !passNum)) {
-      alert("Please enter the correct password!");
+      // alert("Please enter the correct password!");
+      message.info('Please enter the correct password!');
       return;
     }
     let aesPass = asePass(pValue, "");

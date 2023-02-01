@@ -49,8 +49,10 @@ export const Mobile = () => {
   };
 
   //计算汇率
-  const exchangeActive = (item) =>{
-    if(item.exchangeRate != null){
+  const exchangeActive =  (item) =>{
+    console.log(item)
+    if(item.exchangeRate != null && sliderTotle !== 0){
+      console.log(sliderTotle)
       let num = ((Math.floor(parseFloat(sliderTotle) * parseFloat(item.exchangeRate)*1000))/1000).toFixed(2)
       console.log(num)
       setSliderNum(num)
@@ -61,7 +63,9 @@ export const Mobile = () => {
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
+    console.log(data)
     setCurrencyList(data.data);
+      exchangeActive(data.data[0])
   };
 
   const onChange = (value) => {
@@ -99,11 +103,11 @@ export const Mobile = () => {
   };
 
   useEffect(() => {
-    getCurrencyInfo();
     getExchangeNum(currencyType);
     getCurrencyConfigData();
     getVoucher();
-  }, []);
+    getCurrencyInfo();
+  }, [sliderTotle]);
   return (
     <>
       <div className={styles.page}>

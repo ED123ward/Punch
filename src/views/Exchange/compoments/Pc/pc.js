@@ -9,8 +9,8 @@ import Background from "../../../../assets/userLogin/background.png";
 import Logo from "../../../../assets/userLogin/logoText.png";
 import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
-import SignOut from "../../../../assets/userLogin/signout.png"
-import CaseOut from "../../../../assets/userLogin/cashOut.png"
+import SignOut from "../../../../assets/userLogin/signout.png";
+import CaseOut from "../../../../assets/userLogin/cashOut.png";
 
 import {
   getCurrencyList,
@@ -40,14 +40,33 @@ export const PC = () => {
       setCurrencyType(item.currency);
       setShowChange("hide");
       setCurrencyTypeName(item.name);
+      exchangeActive(item);
     }, 100);
 
     getExchangeNum(item.currency);
   };
 
+  //计算汇率
+  const exchangeActive = (item) => {
+    console.log(item);
+    if (item.exchangeRate != null && sliderTotle !== 0) {
+      console.log(sliderTotle);
+      let num = (
+        Math.floor(
+          parseFloat(sliderTotle) * parseFloat(item.exchangeRate) * 1000
+        ) / 1000
+      ).toFixed(2);
+      console.log(num);
+      setSliderNum(num);
+    } else {
+      setSliderNum("-");
+    }
+  };
+
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
     setCurrencyList(data.data);
+    exchangeActive(data.data[0]);
   };
 
   const onChange = (value) => {
@@ -77,26 +96,30 @@ export const PC = () => {
     let data = await getCurrencyBalance(query);
     setSliderTotle(data.data.balance);
   };
-  const signOut = async () =>{
+  const signOut = async () => {
     setTimeout(() => {
       navigate("/");
     }, 500);
-  }
+  };
 
   useEffect(() => {
     getCurrencyInfo();
     getExchangeNum(currencyType);
     getCurrencyConfigData();
     getVoucher();
-  }, []);
+  }, [sliderTotle]);
   return (
     <>
       <div className={styles.page}>
-
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
             <img className={styles.logo} src={Logo}></img>
-            <img onClick={signOut} className={styles.headButton} src={SignOut} alt=""></img>
+            <img
+              onClick={signOut}
+              className={styles.headButton}
+              src={SignOut}
+              alt=""
+            ></img>
           </div>
         </div>
 
@@ -182,7 +205,7 @@ export const PC = () => {
 
         <div className={styles.caseOutButton}>
           <img className={styles.caseOutImg} src={CaseOut} alt=""></img>
-        </div> 
+        </div>
       </div>
     </>
   );

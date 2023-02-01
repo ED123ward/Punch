@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CryptoJs from "crypto-js";
 
+import { message } from 'antd';
+
 import styles from "./mobile.module.scss";
 
 import Background from "../../../../assets/userLogin/background.png";
@@ -12,6 +14,7 @@ import ErrorIcon from "../../../../assets/home/errIcon.png";
 import PassShow from "../../../../assets/home/passShow.png";
 import PassHide from "../../../../assets/home/passHide.png";
 import LoginActive from "../../../../assets/userLogin/loginActive.png";
+
 
 import { debounce } from "../../../../utils/utils";
 
@@ -27,6 +30,7 @@ export const Mobile = () => {
   const [passAa, setPassAa] = useState(false);
   const [passNum, setPassNum] = useState(false);
   const [passFouse, setPassFouse] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -108,11 +112,13 @@ export const Mobile = () => {
     let eValue = emailInput.current.value;
     let pValue = passInput.current.value;
     if (eValue === "" || emailErrorStatue) {
-      alert("Please enter the correct email address!");
+      // alert("Please enter the correct email address!");
+      message.info('Please enter the correct email address!');
       return;
     }
     if (pValue === "" || (!passLength && !passAa && !passNum)) {
-      alert("Please enter the correct password!");
+      // alert("Please enter the correct password!");
+      message.info('Please enter the correct password!');
       return;
     }
     let aesPass = asePass(pValue, "");
@@ -133,7 +139,7 @@ export const Mobile = () => {
       localStorage.setItem("token", data.data);
       navigate("/currency");
     } else {
-      alert(data.msg);
+      message.error(data.msg);
     }
   };
   //ASE加密
