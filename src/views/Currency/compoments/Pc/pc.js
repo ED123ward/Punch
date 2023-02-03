@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./pc.module.scss";
 
+import cookie from 'react-cookies'
+
 import { message } from 'antd';
 
 import Logo from "../../../../assets/userLogin/logoText.png";
@@ -46,8 +48,47 @@ export const PC = () => {
     }, 500);
   }
 
+  //获得是否是登录跳转
+  //获得token
+
+  const getUrlQuery = async () => {
+    let location = window.location;
+    let search = location.hash.split("?token=");
+    let cookie_token = cookie.load("token");
+    let storage_token = localStorage.getItem("token");
+    console.log(search);
+    if (search[1] !== undefined && search[1].length > 10) {
+      console.log(search[1]);
+      if (search[1] == null || search[1] === undefined) {
+        localStorage.setItem("token", "");
+      } else {
+        localStorage.setItem("token", search[1]);
+        setTimeout(() => {
+          getCurrencyInfo();
+        }, 500);
+      }
+    } else if (cookie_token !== undefined && cookie_token.length > 10) {
+      localStorage.setItem("token", cookie_token);
+      setTimeout(() => {
+        getCurrencyInfo();
+      }, 500);
+    } else if (storage_token !== undefined && storage_token.length > 10) {
+      setTimeout(() => {
+        getCurrencyInfo();
+      }, 500);
+    } else {
+      const ua = navigator.userAgent;
+      const isPunch = ua.indexOf("Punch") > -1;
+      if (!isPunch) {
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+      }
+    }
+  };
+
   useEffect(() => {
-    getCurrencyInfo();
+    getUrlQuery()
   }, []);
   return (
     <>

@@ -3,6 +3,8 @@
  */
  import axios from "axios";
 
+ import cookie from 'react-cookies'
+
  axios.defaults.timeout = 100000;
  axios.defaults.baseURL = "http://test.mediastack.cn/";
  
@@ -11,10 +13,17 @@
   */
  axios.interceptors.request.use(
    (config) => {
+    let token = '';
+    if(localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== ''){
+      token = localStorage.getItem('token')
+    }
+    if(cookie.load('token') !== undefined && cookie.load('token') !== ''){
+      token = cookie.load('token')
+    }
      config.data = JSON.stringify(config.data);
      config.headers = {
        "Content-Type": "application/json",
-       "Authorization":`Bearer ${localStorage.getItem('token')}`
+       "Authorization":`Bearer ${token}`
      };
      return config;
    },

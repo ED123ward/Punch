@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import cookie from 'react-cookies'
+
 import styles from "./homeMobile.module.scss";
 
 import { ScrollPercentage } from "react-scroll-percentage";
@@ -35,8 +37,41 @@ export default class HomeMobileAn extends Component {
   //获得token
 
   getUrlQuery = () =>{
+
+    let location = window.location;
+    let search = location.hash.split("?token=");
+    console.log(search)
+    if(search !== undefined  && search.length > 10){
+      console.log(search[1]);
+      if (
+        search[1] == null ||
+        search[1] === undefined
+      ) {
+        localStorage.setItem("token", "");
+      }else{
+        localStorage.setItem("token", search[1]);
+        setTimeout(() => {
+          window.location.href='/#/currency'
+        }, 500);
+       
+      }
+    }else{
+      let token = cookie.load('token')
+      alert(token)
+     if(token !== undefined  && token.length > 10){
+      localStorage.setItem("token", search[1]);
+        setTimeout(() => {
+          window.location.href='/#/currency'
+        }, 500);
+     }
+    }
     
-    
+  }
+
+  //清理登录token
+  clearToken(){
+    localStorage.setItem("token", "");
+    cookie.remove('token')
   }
 
   goWeb = () => {
@@ -100,28 +135,14 @@ export default class HomeMobileAn extends Component {
     );
   };
 
-  static getDerivedStateFromProps(props, state) {
-    let location = window.location;
-    let search = location.hash.split("?token=");
-    if(search !== undefined){
-      console.log(search[1]);
-      if (
-        search[1] == null ||
-        search[1] === undefined
-      ) {
-        localStorage.setItem("token", "");
-      }else{
-        localStorage.setItem("token", search[1]);
-        setTimeout(() => {
-          window.location.href='/#/currency'
-        }, 500);
-       
-      }
-    }
-    }
+  // static getDerivedStateFromProps(props, state) {
+ 
+  //   return null
+  //   }
 
   componentDidMount() {
-   
+    // this.getUrlQuery()
+    this.clearToken()
     this.watchVideo();
     setInterval(() => {
       this.showTime();

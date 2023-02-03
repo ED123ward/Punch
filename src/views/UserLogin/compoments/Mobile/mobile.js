@@ -97,13 +97,13 @@ const loginFB = async () =>{
   return (
     <>
       <div className={styles.page}>
-        <div className={styles.pageBackground}>
+      <div className={styles.pageBackground}>
           <img className={styles.pageBackgroundImg} src={Background} />
         </div>
 
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
-            <img className={styles.logo} src={Logo}></img>
+            <img className={styles.logo} src={Logo} alt=""></img>
           </div>
         </div>
 

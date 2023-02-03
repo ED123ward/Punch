@@ -33,6 +33,8 @@ export const Mobile = () => {
   const [sliderMax, setSliderMax] = useState(100);
   const [sliderNum, setSliderNum] = useState("-");
 
+  const [isPunch, setIsPunch] = useState(true);
+
   const [thresholdValue, setThresholdValue] = useState();
 
   const navigate = useNavigate();
@@ -64,6 +66,16 @@ export const Mobile = () => {
       setSliderNum("-");
     }
   };
+
+    //是否是App打开
+    const isAppOpen = ()=>{
+      const ua = navigator.userAgent;
+        const isPunch = ua.indexOf("Punch") > -1;
+        if(!isPunch){
+          setIsPunch(false)
+        }
+      
+    }
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
@@ -117,24 +129,30 @@ export const Mobile = () => {
     getCurrencyConfigData();
     getVoucher();
     getCurrencyInfo();
+    isAppOpen()
   }, [sliderTotle]);
   return (
     <>
       <div className={styles.page}>
         <div className={styles.pageBackground}>
-          <img className={styles.pageBackgroundImg} src={Background} />
+          <img className={styles.pageBackgroundImg} src={Background} alt="" />
         </div>
 
         <div className={styles.headBlock}>
           <div className={styles.logoBlock}>
-            <img className={styles.logo} src={Logo}></img>
+            <img className={styles.logo} src={Logo} alt=""></img>
           </div>
           <div className={styles.signOutBlock}>
-            <img
-              onClick={signOut}
-              className={styles.signOut}
-              src={SignOut}
-            ></img>
+          {isPunch ? (
+              ""
+            ) : (
+              <img
+                onClick={signOut}
+                className={styles.signOut}
+                src={SignOut}
+                alt=""
+              ></img>
+            )}
           </div>
         </div>
 
@@ -194,6 +212,7 @@ export const Mobile = () => {
                               <img
                                 className={styles.singleImg}
                                 src={item.icon}
+                                alt=""
                               ></img>
                             </div>
                             <div className={styles.singleText}>{item.name}</div>
