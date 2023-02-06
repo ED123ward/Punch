@@ -11,12 +11,12 @@ import { ScrollPercentage } from "react-scroll-percentage";
 
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
-import LeanMoreImg from "../../../../assets/home/leanMore.png"
+import LeanMoreImg from "../../../../assets/home/leanMore.png";
 
-import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png"
-import Discover from "../../../../assets/home/Discover our games.png"
+import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png";
+import Discover from "../../../../assets/home/Discover our games.png";
 
-import HeadImg from "../../../../assets/home/headImg.png"
+import HeadImg from "../../../../assets/home/headImg.png";
 import UserLogin from "../../../../assets/home/userLogin.png";
 
 import BoxingSlider from "./boxingSlider";
@@ -38,9 +38,9 @@ export default class HomeWindow extends Component {
     balloonCardShow: false,
     isScollerActive: false,
     rotatingActive: false,
-    boxingTextShow:false,
-    boxingCardsShow:false,
-    startStatu:false
+    boxingTextShow: false,
+    boxingCardsShow: false,
+    startStatu: false,
   };
 
   goWeb = () => {
@@ -108,13 +108,13 @@ export default class HomeWindow extends Component {
   goTop = () => {
     window.scrollTo(0, 0);
   };
-  goCash = () =>{
+  goCash = () => {
     window.location.href = "/#/userlogin";
-  }
-  scrollPage = () =>{
+  };
+  scrollPage = () => {
     let height = document.body.clientHeight;
-    window.scrollTo(0, height*0.03);
-  }
+    window.scrollTo(0, height * 0.03);
+  };
 
   playV3 = () => {
     var elevideo = document.getElementById("video3");
@@ -173,15 +173,15 @@ export default class HomeWindow extends Component {
           >
             <div className={`${styles.logoBlock}`}>
               <img
-               className={styles.logoImg}
+                className={styles.logoImg}
                 onClick={() => {
                   this.goTop();
                 }}
                 src={LogoText}
                 alt=""
               />
-               <img
-               className={styles.loginButton}
+              <img
+                className={styles.loginButton}
                 onClick={() => {
                   this.goCash();
                 }}
@@ -192,8 +192,11 @@ export default class HomeWindow extends Component {
 
             <div className={`${styles.timeBlock} `}>
               <div className={styles.timeDown}>
-                <div>  <img className={styles.headImgAStyle} src={HeadImg} /></div>
-              
+                <div>
+                  {" "}
+                  <img className={styles.headImgAStyle} src={HeadImg} />
+                </div>
+
                 {/* <div className={styles.timeText}>{this.state.Days}</div>
                 <div className={styles.fontFamily}>:</div>
                 <div className={styles.timeText}>{this.state.Hours}</div>
@@ -212,22 +215,28 @@ export default class HomeWindow extends Component {
             <div
               onClick={() => {
                 // this.goWeb();
-                this.scrollPage()
+                this.scrollPage();
               }}
               className={`${styles.buttonBlock} `}
             >
               <img src={Button} />
             </div>
-            <div  onClick={() => {
-                this.scrollPage()
+            <div
+              onClick={() => {
+                this.scrollPage();
               }}
-              className={`${styles.leanMoreBlock} `}>
+              className={`${styles.leanMoreBlock} `}
+            >
               <img src={LeanMoreImg} />
             </div>
           </div>
 
           <div className={`${styles.boxingContent}`}>
-          <div className={` ${styles.logoBlocksecont} ${this.state.rotatingActive ? styles.animationLeft : ""}`  }>
+            <div
+              className={` ${styles.logoBlocksecont} ${
+                this.state.rotatingActive ? styles.animationLeft : ""
+              }`}
+            >
               <img
                 onClick={() => {
                   this.goTop();
@@ -240,7 +249,7 @@ export default class HomeWindow extends Component {
                 this.state.rotatingActive ? styles.animationLeft : ""
               }`}
             >
-             <img className={styles.next} src={Next} />
+              <img className={styles.next} src={Next} />
             </div>
             <ScrollPercentage
               as="div"
@@ -258,7 +267,11 @@ export default class HomeWindow extends Component {
                 }
               }}
             >
-              <div className={`${styles.disGameBlock} ${this.state.boxingTextShow?styles.boxingTextAn:''}`}>
+              <div
+                className={`${styles.disGameBlock} ${
+                  this.state.boxingTextShow ? styles.boxingTextAn : ""
+                }`}
+              >
                 {/* <div className={styles.disGameTitle}>Discover our games</div>
                 <div className={styles.disGameContent}>
                   Our portfolio of hyper-casual and casual games has over 6
@@ -267,9 +280,10 @@ export default class HomeWindow extends Component {
                 </div> */}
                 <img className={styles.discover} src={Discover} />
                 <div className={styles.disGameContent}>
-                Our portfolio of hyper-casual and casual games includes puzzle, sports and action games, with more genres of games to come. Gamers of all demographics can find something they like!
+                  Our portfolio of hyper-casual and casual games includes
+                  puzzle, sports and action games, with more genres of games to
+                  come. Gamers of all demographics can find something they like!
                 </div>
-                
               </div>
             </ScrollPercentage>
             <ScrollPercentage
@@ -287,7 +301,11 @@ export default class HomeWindow extends Component {
                 }
               }}
             >
-              <div className={`${styles.disGameSwiper} ${this.state.boxingCardsShow?styles.boxingCardAn:''}`}>
+              <div
+                className={`${styles.disGameSwiper} ${
+                  this.state.boxingCardsShow ? styles.boxingCardAn : ""
+                }`}
+              >
                 <BoxingSlider />
               </div>
             </ScrollPercentage>
@@ -319,11 +337,11 @@ export default class HomeWindow extends Component {
             as="div"
             onChange={(percentage, entry) => {
               if (percentage > 0.42771577380952377 && !this.state.startStatu) {
-                  this.setState({
-                    startStatu: true,
-                  });
-                  this.playV3();
-                
+                this.setState({
+                  startStatu: true,
+                });
+                this.playV3();
+
                 this.setState({
                   balloonCardShow: true,
                 });
@@ -331,7 +349,7 @@ export default class HomeWindow extends Component {
               if (percentage === 0) {
                 this.setState({
                   balloonCardShow: false,
-                  startStatu:false
+                  startStatu: false,
                 });
               }
             }}
@@ -403,7 +421,7 @@ export default class HomeWindow extends Component {
               src="./friendVideo.mp4"
             ></video>
           </div>
-          <ScrollPercentage
+          {/* <ScrollPercentage
             as="div"
             onChange={(percentage, entry) => {
               if (percentage > 0.32771577380952377) {
@@ -432,7 +450,7 @@ export default class HomeWindow extends Component {
         </div>
 
         <div className={styles.swiperBlock}>
-          <SliderAutoPlay />
+          <SliderAutoPlay /> */}
         </div>
 
         <div className={styles.surpriseGift}>

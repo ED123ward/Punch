@@ -10,6 +10,7 @@ import UserLogin from "./views/UserLogin/userLogin"
 import EmailLogin from "./views/EmailLogin/emailLogin"
 import Currency from "./views/Currency/currency";
 import Exchange from "./views/Exchange/exchange";
+import Task from "./views/Task/task"
 
 import useFirebase from "./hooks/firebase";
 
@@ -26,6 +27,7 @@ function App() {
             <Route  path="/emaillogin" element={<EmailLogin  />} />
             <Route  path="/currency" element={<Currency  />} />
             <Route  path="/exchange" element={<Exchange  />} />
+            <Route  path="/task" element={<Task  />} />
             <Route  path="*" element={<Home  />} />
            
         </Routes>

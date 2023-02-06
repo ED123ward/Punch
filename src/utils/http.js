@@ -25,6 +25,11 @@
        "Content-Type": "application/json",
        "Authorization":`Bearer ${token}`
      };
+     if(config.url === 'https://discord.com/api/users'){
+      config.headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+     }
      return config;
    },
    (error) => {
