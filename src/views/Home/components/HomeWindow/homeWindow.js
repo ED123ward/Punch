@@ -388,7 +388,7 @@ export default class HomeWindow extends Component {
           </ScrollPercentage>
         </div>
 
-        <div className={styles.friendBlock}>
+        {/* <div className={styles.friendBlock}>
           <div className={styles.friendVideo}>
             <video
               className={`${styles.video}`}
@@ -428,7 +428,7 @@ export default class HomeWindow extends Component {
 
         <div className={styles.swiperBlock}>
           <SliderAutoPlay />
-        </div>
+        </div> */}
 
         <div className={styles.surpriseGift}>
           <video
