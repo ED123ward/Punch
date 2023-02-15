@@ -25,7 +25,7 @@
        "Content-Type": "application/json",
        "Authorization":`Bearer ${token}`
      };
-     if(config.url === 'https://discord.com/api/users'){
+     if(config.url === 'https://api.twitter.com/2/oauth2/token'){
       config.headers={
         'Content-Type': 'application/x-www-form-urlencoded'
       }

@@ -30,13 +30,15 @@
         .logo {
             width: 0.73rem;
         }
-        .signOutBlock{
+
+        .signOutBlock {
             margin-right: 0.31rem;
             text-align: left;
             display: flex;
             align-items: center;
         }
-        .signOut{
+
+        .signOut {
             height: 0.65rem;
         }
     }
@@ -92,16 +94,16 @@
                         text-align: center;
                     }
 
-                  
 
-                        .middleArrowImg {
-                            position: absolute;
-                            top: -0.12rem;
-                            left: 2.5rem;
-                            width: 0.31rem;
-                            height: 0.31rem;
-                        }
-                    
+
+                    .middleArrowImg {
+                        position: absolute;
+                        top: -0.12rem;
+                        left: 2.5rem;
+                        width: 0.31rem;
+                        height: 0.31rem;
+                    }
+
                 }
 
                 .bottom {
@@ -160,7 +162,7 @@
                                 display: flex;
                                 align-items: center;
                                 padding-left: 0.1rem;
-                              
+
 
                                 .singleImgBlock {
                                     display: flex;
@@ -210,13 +212,57 @@
         line-height: 0.43rem;
         font-family: Murecho-Medium;
     }
-    .caseOutButton{
+
+    .caseOutButton {
         position: relative;
-       margin-top: 4rem;
+        margin-top: 4rem;
         text-align: center;
         width: 100%;
-        .caseOutImg{
+
+        .caseOutImg {
             width: 3.46rem;
+        }
+        .caseOutImgActive{
+            width: 4.23rem;
+        }
+    }
+
+    .inCashOut {
+        position: relative;    position: relative;
+        width: 6.12rem;
+        margin: 0.85rem auto 0  auto;
+        text-align: left;
+
+        .cashOutNum {
+            font-size: 0.46rem;
+            font-family: Murecho-ExtraBold, Murecho;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 0.46rem;
+        }
+
+        .cashOutInContent {
+            margin-top: 0.23rem;
+            font-size: 0.23rem;
+            font-family: Murecho-Light, Murecho;
+            font-weight: 300;
+            color: #FFFFFF;
+            line-height: 0.23rem;
+        }
+
+        .cashOutInText {
+            margin-top: 0.31rem;
+            font-size: 0.27rem;
+            font-family: Murecho-Medium, Murecho;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 0.4rem;
+            .lineText{
+                display: inline-block;
+            }
+            .cashOutTime{
+                color: #FFF384;
+            }
         }
     }
 

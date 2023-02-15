@@ -29,12 +29,22 @@ function getCurrencyConfig(param){
   return  http("get",hosttUrl+`/web/exchange/config`);
 }
 
+/**
+ * 获得提现首页状态
+ */
+function getExchangeType(param){
+  return  http("get",hosttUrl+`/web/exchange/index`);
+}
+
+
+
 
 
 export {
     loginActive,
     getCurrencyList,
     getCurrencyBalance,
-    getCurrencyConfig
+    getCurrencyConfig,
+    getExchangeType
 }
 

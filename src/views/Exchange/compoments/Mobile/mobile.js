@@ -11,11 +11,13 @@ import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
 import SignOut from "../../../../assets/userLogin/signout.png";
 import CaseOut from "../../../../assets/userLogin/cashOut.png";
+import WaitImg from "../../../../assets/userLogin/wait.png"
 
 import {
   getCurrencyList,
   getCurrencyBalance,
   getCurrencyConfig,
+  getExchangeType,
 } from "../../../../api/user";
 
 export const Mobile = () => {
@@ -36,6 +38,8 @@ export const Mobile = () => {
   const [isPunch, setIsPunch] = useState(true);
 
   const [thresholdValue, setThresholdValue] = useState();
+
+  const [currencyIndexPage, setCurrencyIndexPage] = useState({});
 
   const navigate = useNavigate();
 
@@ -67,26 +71,24 @@ export const Mobile = () => {
     }
   };
 
-    //是否是App打开
-    const isAppOpen = ()=>{
-      const ua = navigator.userAgent;
-        const isPunch = ua.indexOf("Punch") > -1;
-        if(!isPunch){
-          setIsPunch(false)
-        }
-      
+  //是否是App打开
+  const isAppOpen = () => {
+    const ua = navigator.userAgent;
+    const isPunch = ua.indexOf("Punch") > -1;
+    if (!isPunch) {
+      setIsPunch(false);
     }
+  };
 
   const getCurrencyInfo = async () => {
     let data = await getCurrencyList();
     console.log(data);
     setCurrencyList(data.data);
     data.data.map((item, index) => {
-      if(item.currency === currencyType){
+      if (item.currency === currencyType) {
         exchangeActive(item);
       }
     });
-    
   };
 
   const onChange = (value) => {
@@ -114,7 +116,9 @@ export const Mobile = () => {
       currency: "voucher",
     };
     let data = await getCurrencyBalance(query);
-    let num =  (Math.floor(parseFloat(data.data.balance)* 100) / 100).toFixed(2);
+    let num = (Math.floor(parseFloat(data.data.balance) * 100) / 100).toFixed(
+      2
+    );
     setSliderTotle(num);
   };
 
@@ -124,12 +128,21 @@ export const Mobile = () => {
     }, 500);
   };
 
+  //获得兑换状态
+
+  const exchangeType = async () => {
+    let info = await getExchangeType();
+    console.log(info);
+    setCurrencyIndexPage(info.data);
+  };
+
   useEffect(() => {
+    exchangeType();
     getExchangeNum(currencyType);
     getCurrencyConfigData();
     getVoucher();
     getCurrencyInfo();
-    isAppOpen()
+    isAppOpen();
   }, [sliderTotle]);
   return (
     <>
@@ -143,7 +156,7 @@ export const Mobile = () => {
             <img className={styles.logo} src={Logo} alt=""></img>
           </div>
           <div className={styles.signOutBlock}>
-          {isPunch ? (
+            {isPunch ? (
               ""
             ) : (
               <img
@@ -228,7 +241,7 @@ export const Mobile = () => {
           </div>
         </div>
 
-        {sliderTotle <= thresholdValue ? (
+        {currencyIndexPage.exchangeStatus === 2 ? (
           <div className={styles.showText}>
             You need to have at least {thresholdValue} Punch Points to cash out.
           </div>
@@ -236,8 +249,59 @@ export const Mobile = () => {
           <div className={styles.showText}>CONVERSION RATE MAY VARY.</div>
         )}
 
+        {currencyIndexPage.exchangeStatus === 3 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.cashOutNum}>
+              {sliderNum}
+              {currencyTypeName}
+            </div>
+            <div className={styles.cashOutInContent}>
+              will be in your Bitmart account in minutes.
+            </div>
+            <div className={styles.cashOutInText}>
+              <div className={styles.lineText}>
+                Please check your email to complete the process.Please allow up
+                to{" "}
+                <div className={`${styles.lineText}  ${styles.cashOutTime}`}>
+                  48 hours
+                </div>
+              </div>
+
+              <div className={styles.lineText}> before contacting support.</div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {currencyIndexPage.exchangeStatus === 4 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.cashOutNum}>
+              {sliderNum}
+              {currencyTypeName}
+            </div>
+            <div className={styles.cashOutInContent}>
+              will be in your Bitmart account in minutes.
+            </div>
+            <div className={styles.cashOutInText}>
+              <div className={styles.lineText}>
+                Please check your email to complete the process.Please allow up
+                to{" "}
+                <div className={`${styles.lineText}  ${styles.cashOutTime}`}>
+                  48 hours
+                </div>
+              </div>
+
+              <div className={styles.lineText}> before contacting support.</div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className={styles.caseOutButton}>
-          <img className={styles.caseOutImg} src={CaseOut} alt=""></img>
+          {currencyIndexPage.exchangeStatus === 2?(<img className={`${styles.caseOutImg}`} src={CaseOut} alt=""></img>):('')}
+          {currencyIndexPage.exchangeStatus === 3?(<img className={`${styles.caseOutImg} ${styles.caseOutImgActive}`} src={WaitImg} alt=""></img>):('')}
         </div>
       </div>
     </>
