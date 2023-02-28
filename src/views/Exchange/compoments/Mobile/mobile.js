@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { debounce } from "../../../../utils/utils";
+import { Button, message, Space, Modal } from "antd";
 
 import styles from "./mobile.module.scss";
 import { Slider } from "antd";
@@ -11,13 +13,21 @@ import BottomArrow from "../../../../assets/userLogin/bottomArrow.png";
 import MiddleArrow from "../../../../assets/userLogin/middleArrow.png";
 import SignOut from "../../../../assets/userLogin/signout.png";
 import CaseOut from "../../../../assets/userLogin/cashOut.png";
-import WaitImg from "../../../../assets/userLogin/wait.png"
+import WaitImg from "../../../../assets/userLogin/wait.png";
+import Next from "../../../../assets/userLogin/next.png";
+import CaseOutActive from "../../../../assets/userLogin/cashOutActive.png";
+
+import { completeEmail, browser } from "../../../../utils/bridge";
 
 import {
   getCurrencyList,
   getCurrencyBalance,
   getCurrencyConfig,
   getExchangeType,
+  getCode,
+  getUserInfo,
+  checkSCodeActive,
+  initiateConversion,
 } from "../../../../api/user";
 
 export const Mobile = () => {
@@ -41,7 +51,46 @@ export const Mobile = () => {
 
   const [currencyIndexPage, setCurrencyIndexPage] = useState({});
 
+  const [bitmartFirstEmailValue, setBitmartFirstEmailValue] = useState();
+  const [bitmartFirstEmailErrorStatue, setBitmartFirstEmailErrorStatue] =
+    useState();
+  const bitmartFirstEmailInput = React.useRef(false);
+
+  const [securityCodeValue, setSecurityCodeValue] = useState();
+  const securityCodeInput = React.useRef(false);
+
+  const [securityCodeText, setSecurityCodeText] = useState("Sent");
+  const [securityCodeTextStatu, setSecurityCodeTextStatu] = useState(false);
+  const [securityCodeErrorStatue, setSecurityCodeErrorStatue] = useState(false);
+  const securityEmailInput = useRef();
+
+  const [securityEmailValue, setSecurityEmailValue] = useState();
+  const [securityEmailErrorStatue, setSecurityEmailErrorStatue] = useState();
+
+  const [currencyStep, setCurrencyStep] = useState(1);
+
+  //bitmart
+
+  const [bitmartCodeValue, setBitmartCodeValue] = useState();
+  const bitmartCodeInput = React.useRef(false);
+
+  const [bitmartCodeText, setBitmartCodeText] = useState("Sent");
+  const [bitmartCodeTextStatu, setBitmartCodeTextStatu] = useState(false);
+  const [bitmartCodeErrorStatue, setBitmartCodeErrorStatue] = useState(false);
+  const bitmartEmailInput = useRef();
+
+  const [bitmartEmailValue, setBitmartEmailValue] = useState();
+  const [bitmartEmailErrorStatue, setBitmartEmailErrorStatue] = useState();
+
+  const [userInfo, setUserInfo] = useState();
+
   const navigate = useNavigate();
+
+  const [showExchangeButton, setShowExchangeButton] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [lastesTimeMap, setLastesTimeMap] = useState({});
 
   const changeType = (item) => {
     setTimeout(() => {
@@ -128,15 +177,359 @@ export const Mobile = () => {
     }, 500);
   };
 
-  //获得兑换状态
-
+  //获得兑换状态首页
   const exchangeType = async () => {
     let info = await getExchangeType();
     console.log(info);
+    // info.data.exchangeStatus = 4;
+    if (info.data.exchangeStatus === 1 && info.data.latestDetail !== null) {
+      setCurrencyStep(2);
+    }
+    if (info.data.exchangeStatus === 4) {
+      lasterCurrency(info.data);
+    }
     setCurrencyIndexPage(info.data);
   };
 
+  //获得上次提现信息
+  const lasterCurrency = async (data) => {
+    let map = data;
+    let laseterTime = new Date(map.latestDetail.createAt);
+    let laseteryear = laseterTime.getFullYear();
+    let lasetermonth = laseterTime.getMonth() + 1;
+    let laseterday = laseterTime.getDate();
+    console.log(laseteryear);
+    console.log(lasetermonth);
+    console.log(laseterday);
+
+    //计算倒计时
+
+    let down = map.config.timeInterval + map.latestDetail.createAt - new Date();
+    console.log(down);
+
+    let lasterTimeMap = {
+      email: map.latestDetail.email,
+      laseteryear: laseteryear,
+      lasetermonth: lasetermonth,
+      laseterday: laseterday,
+    };
+
+    lasterTimeMap.downmini = Math.floor((down / 1000 / 60) % 60);
+    lasterTimeMap.downhour = Math.floor((down / 1000 / 60 / 60) % 24);
+    lasterTimeMap.downday = Math.floor(down / 1000 / 60 / 60 / 24);
+
+    console.log(lasterTimeMap);
+
+    setLastesTimeMap(lasterTimeMap);
+  };
+
+  //判断email输入
+  const bitmartFirstEmailValueChange = debounce((e) => {
+    let value = e.target.value;
+    let reg =
+      /^[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+    let bool = reg.test(value);
+    let regLength = /^(a-z|A-Z|0-9)*[^$%^&*;:,<>?()']{4,50}$/;
+    let boolLength = regLength.test(value);
+    console.log(bool);
+    console.log(boolLength);
+    if (bool && boolLength) {
+      setBitmartFirstEmailErrorStatue(false);
+    } else {
+      setBitmartFirstEmailErrorStatue(true);
+    }
+  }, 500);
+
+  //判断email输入
+  const securityEmailValueChange = debounce((e) => {
+    let value = e.target.value;
+    let reg =
+      /^[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+    let bool = reg.test(value);
+    let regLength = /^(a-z|A-Z|0-9)*[^$%^&*;:,<>?()']{4,50}$/;
+    let boolLength = regLength.test(value);
+    console.log(bool);
+    console.log(boolLength);
+    if (bool && boolLength) {
+      setSecurityEmailErrorStatue(false);
+    } else {
+      setSecurityEmailErrorStatue(true);
+    }
+  }, 500);
+
+  //判断email输入
+  const bitmartEmailValueChange = debounce((e) => {
+    let value = e.target.value;
+    let reg =
+      /^[a-zA-Z0-9]+([-_.][A-Za-zd]+)*@([a-zA-Z0-9]+[-.])+[A-Za-zd]{2,5}$/;
+    let bool = reg.test(value);
+    let regLength = /^(a-z|A-Z|0-9)*[^$%^&*;:,<>?()']{4,50}$/;
+    let boolLength = regLength.test(value);
+    console.log(bool);
+    console.log(boolLength);
+    if (bool && boolLength) {
+      setBitmartEmailErrorStatue(false);
+    } else {
+      setBitmartEmailErrorStatue(true);
+    }
+  }, 500);
+
+  //判断验证码输入
+  const securityCodeValueChange = debounce((e) => {
+    let value = e.target.value;
+    let codeLength = value.length;
+    let data = value;
+    if (codeLength > 6) {
+      data = value.slice(0, 6);
+      securityCodeInput.current.value = data;
+    }
+
+    let reg = /^\d{6}$/;
+    let bool = reg.test(data);
+
+    if (bool) {
+      setSecurityCodeErrorStatue(false);
+    } else {
+      setSecurityCodeErrorStatue(true);
+    }
+  }, 0);
+
+  //点击发送验证码
+  const securitySendCode = debounce(async () => {
+    if (securityCodeTextStatu) {
+      return;
+    }
+    let eValue = securityEmailInput.current.value;
+    if (eValue === "" || securityEmailErrorStatue) {
+      message.error("Please enter the correct email address!");
+      return;
+    }
+    let query = {
+      authWith: 1,
+      type: 4,
+      email: eValue,
+    };
+    console.log(query);
+    let data = await getCode(query);
+    if (data.code === 200 && data.msg === "success") {
+      setSecurityCodeTextStatu(true);
+      downTime();
+    } else {
+      message.error(data.msg);
+    }
+  }, 500);
+
+  //判断验证码输入
+  const bitmartCodeValueChange = debounce((e) => {
+    let value = e.target.value;
+    let codeLength = value.length;
+    let data = value;
+    if (codeLength > 6) {
+      data = value.slice(0, 6);
+      bitmartCodeInput.current.value = data;
+    }
+
+    let reg = /^\d{6}$/;
+    let bool = reg.test(data);
+
+    if (bool) {
+      setBitmartCodeErrorStatue(false);
+    } else {
+      setBitmartCodeErrorStatue(true);
+    }
+  }, 0);
+
+  //点击发送验证码
+  const bitmartSendCode = debounce(async () => {
+    if (bitmartCodeTextStatu) {
+      return;
+    }
+    let eValue = bitmartEmailInput.current.value;
+    if (eValue === "" || bitmartEmailErrorStatue) {
+      message.error("Please enter the correct email address!");
+      return;
+    }
+    let query = {
+      authWith: 1,
+      type: 5,
+      email: eValue,
+    };
+    console.log(query);
+    let data = await getCode(query);
+    if (data.code === 200 && data.msg === "success") {
+      setBitmartCodeTextStatu(true);
+      downTimeB();
+    } else {
+      message.error(data.msg);
+    }
+  }, 500);
+
+  //倒计时
+  const downTime = () => {
+    let time = 60;
+    let downActive = setInterval(() => {
+      time--;
+      setSecurityCodeText(time);
+      if (time === 0) {
+        clearInterval(downActive);
+        setSecurityCodeText("Send");
+        setSecurityCodeTextStatu(false);
+      }
+    }, 1000);
+  };
+
+  //倒计时
+  const downTimeB = () => {
+    let time = 60;
+    let downActive = setInterval(() => {
+      time--;
+      setBitmartCodeText(time);
+      if (time === 0) {
+        clearInterval(downActive);
+        setBitmartCodeText("Send");
+        setBitmartCodeTextStatu(false);
+      }
+    }, 1000);
+  };
+
+  // next
+  const nextActive = () => {
+    let step = currencyStep;
+    step++;
+    if (step === 2) {
+      setTimeout(() => {
+        setCurrencyStep(step);
+        if (userInfo.email === "") {
+          secureMailboxApp();
+          return false;
+        }
+      }, 100);
+    }
+    if (step === 3) {
+      let bEmail = bitmartFirstEmailInput.current.value;
+      console.log(bitmartFirstEmailInput.current.value);
+      setBitmartFirstEmailValue(bitmartFirstEmailInput.current.value);
+      if (!bitmartFirstEmailErrorStatue && bEmail !== "") {
+        setTimeout(() => {
+          setCurrencyStep(step);
+        }, 100);
+      } else {
+        setBitmartFirstEmailErrorStatue(true);
+      }
+      let sEmail = userInfo.email;
+      if (sEmail === bEmail) {
+        setTimeout(() => {
+          setShowExchangeButton(true);
+        }, 100);
+      }
+    }
+    if (step === 4) {
+      if (showExchangeButton) {
+        exchange();
+      } else {
+        //验证安全邮箱的验证码
+        checkSCode();
+      }
+    }
+  };
+
+  //跳转App填写安全邮箱
+
+  const secureMailboxApp = () => {
+    showModal();
+  };
+
+  const checkSCode = async () => {
+    if (securityCodeInput.current.value === "" && !securityCodeErrorStatue) {
+      setSecurityCodeErrorStatue(true);
+      return false;
+    }
+    let data = {
+      authWith: 1,
+      captcha: securityCodeInput.current.value,
+      type: 4,
+      email: securityEmailInput.current.value,
+    };
+    let info = await checkSCodeActive(data);
+    console.log(info);
+    if (info.code === 200) {
+      setSecurityCodeValue(securityCodeInput.current.value);
+      setTimeout(() => {
+        let step = currencyStep;
+        step++;
+        setCurrencyStep(step);
+        setTimeout(() => {
+          setBitmartEmailValue(bitmartFirstEmailValue);
+        }, 500);
+      }, 100);
+    }
+  };
+  //兑换
+  const exchange = async () => {
+    if (
+      currencyStep === 3 &&
+      (securityCodeInput.current.value === "" || securityCodeErrorStatue)
+    ) {
+      setSecurityCodeErrorStatue(true);
+    }
+
+    let data = {
+      toCurrency: currencyType,
+    };
+    if (currencyStep === 3) {
+      data.securityEmailCaptcha = securityCodeInput.current.value;
+    }
+    if (currencyStep === 4) {
+      data.securityEmailCaptcha = securityCodeValue;
+      data.exchangeEmail = bitmartEmailInput.current.value;
+      data.exchangeEmailCaptcha = bitmartCodeInput.current.value;
+    }
+    console.log(data);
+    try {
+      let info = await initiateConversion(data);
+      setCurrencyStep(5);
+    } catch (error) {
+      
+    }
+    
+  };
+
+  //获得用户信息
+  const getUserInfoActive = async () => {
+    let info = await getUserInfo();
+    console.log(info);
+    setUserInfo(info.data);
+    console.log(info.data.email);
+    if (info.data.email !== "" && info.data.email !== null) {
+      setTimeout(() => {
+        // securityEmailInput.current.value = info.data.email;
+        setSecurityEmailValue(info.data.email);
+      }, 500);
+    }
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    getBirdgeEmail();
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const getBirdge = () => {
+    let url = currencyIndexPage.config.registerUrl;
+    browser(url);
+  };
+
+  const getBirdgeEmail = () => {
+    completeEmail();
+  };
+
   useEffect(() => {
+    getUserInfoActive();
     exchangeType();
     getExchangeNum(currencyType);
     getCurrencyConfigData();
@@ -240,7 +633,7 @@ export const Mobile = () => {
             {/* */}
           </div>
         </div>
-
+        {/* 积分不足 */}
         {currencyIndexPage.exchangeStatus === 2 ? (
           <div className={styles.showText}>
             You need to have at least {thresholdValue} Punch Points to cash out.
@@ -248,8 +641,8 @@ export const Mobile = () => {
         ) : (
           <div className={styles.showText}>CONVERSION RATE MAY VARY.</div>
         )}
-
-        {currencyIndexPage.exchangeStatus === 3 ? (
+        {/* 48小时到账 */}
+        {currencyIndexPage.exchangeStatus === 5 ? (
           <div className={styles.inCashOut}>
             <div className={styles.cashOutNum}>
               {sliderNum}
@@ -274,7 +667,201 @@ export const Mobile = () => {
           ""
         )}
 
+        {/* 倒计时 */}
         {currencyIndexPage.exchangeStatus === 4 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.cashOutNum}>
+              {sliderNum} {currencyTypeName}
+            </div>
+            <div className={styles.cashOutInContent}>
+              was sent to your Bitmart account (
+              {currencyIndexPage.latestDetail.email}) on{" "}
+              {lastesTimeMap.lasetermonth} , {lastesTimeMap.laseterday} ,{" "}
+              {lastesTimeMap.laseteryear}.
+            </div>
+            <div className={styles.cashOutInText}>
+              <div className={styles.lineText}>
+                Please check your email for more detail.
+              </div>
+              <div className={styles.timeDown}>
+                <div>Next Cash Out In :</div>
+                <div className={styles.downTimeStyle}>
+                  {lastesTimeMap.downday}d {lastesTimeMap.downhour}h{" "}
+                  {lastesTimeMap.downmini}min
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {/* 提现 */}
+        {currencyIndexPage.exchangeStatus === 1 && currencyStep === 1 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.lineText2}>Do u have a Bitmart account?</div>
+            <div className={styles.cashOutInContent}>
+              It needs bitmart account to receive tokens.
+            </div>
+            <div className={styles.cashOutInButtonBlock}>
+              <div
+                onClick={() => {
+                  nextActive();
+                }}
+                className={styles.cashOutInButton}
+              >
+                YES,Cash out Now
+              </div>
+              <div
+                onClick={() => {
+                  getBirdge();
+                }}
+                className={styles.cashOutInButton}
+              >
+                No,Reg First
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {currencyIndexPage.exchangeStatus === 1 && currencyStep === 2 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.lineText2}>Withdraw to Bitmart</div>
+            <div className={styles.cashOutInContent}>
+              This is the Bitmart email address that you are cashing out to.
+            </div>
+            <div className={styles.cashOutInIputBlock}>
+              <input
+                className={`${styles.inputStyle}`}
+                ref={bitmartFirstEmailInput}
+                type="text"
+                placeholder="Enter your email"
+                value={bitmartFirstEmailValue}
+                onChange={(e) => bitmartFirstEmailValueChange(e)}
+              />
+              {bitmartFirstEmailErrorStatue ? (
+                <div className={`${styles.errorShow}`}>Invaild email</div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {currencyIndexPage.exchangeStatus === 1 && currencyStep === 3 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.lineText2}>Security verification</div>
+            <div className={styles.cashOutInInputBlock}>
+              <input
+                className={`${styles.inputStyle}`}
+                ref={securityEmailInput}
+                type="text"
+                placeholder="Enter your email"
+                value={securityEmailValue}
+                onChange={(e) => securityEmailValueChange(e)}
+                disabled={securityEmailValue === "" ? false : true}
+              />
+              {securityEmailErrorStatue ? (
+                <div className={`${styles.errorShow}`}>Invaild email</div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={styles.cashOutInInputBlock}>
+              <input
+                className={`${styles.inputStyle} ${styles.sendInput}`}
+                ref={securityCodeInput}
+                type="number"
+                placeholder="Verification Code"
+                value={securityCodeValue}
+                onChange={(e) => securityCodeValueChange(e)}
+              />
+              <div
+                onClick={() => {
+                  securitySendCode();
+                }}
+                className={styles.sendCodeBlock}
+              >
+                <div
+                  className={`${
+                    !securityCodeTextStatu ? styles.sendCode : styles.sendLoad
+                  }`}
+                >
+                  {securityCodeText}
+                </div>
+              </div>
+              {securityCodeErrorStatue ? (
+                <div className={styles.errorShow}>
+                  Invaild verification code
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {currencyIndexPage.exchangeStatus === 1 && currencyStep === 4 ? (
+          <div className={styles.inCashOut}>
+            <div className={styles.lineText2}>Withdraw to Bitmart</div>
+            <div className={styles.cashOutInInputBlock}>
+              <input
+                className={`${styles.inputStyle}`}
+                ref={bitmartEmailInput}
+                type="text"
+                placeholder="Enter your email"
+                value={bitmartEmailValue}
+                disabled={bitmartEmailValue === "" ? false : true}
+                onChange={(e) => bitmartEmailValueChange(e)}
+              />
+              {bitmartEmailErrorStatue ? (
+                <div className={`${styles.errorShow}`}>Invaild email</div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={styles.cashOutInInputBlock}>
+              <input
+                className={`${styles.inputStyle} ${styles.sendInput}`}
+                ref={bitmartCodeInput}
+                type="number"
+                placeholder="Verification Code"
+                value={bitmartCodeValue}
+                onChange={(e) => bitmartCodeValueChange(e)}
+              />
+              <div
+                onClick={() => {
+                  bitmartSendCode();
+                }}
+                className={styles.sendCodeBlock}
+              >
+                <div
+                  className={`${
+                    !bitmartCodeTextStatu ? styles.sendCode : styles.sendLoad
+                  }`}
+                >
+                  {bitmartCodeText}
+                </div>
+              </div>
+              {bitmartCodeErrorStatue ? (
+                <div className={styles.errorShow}>
+                  Invaild verification code
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {currencyIndexPage.exchangeStatus === 1 && currencyStep === 5 ? (
           <div className={styles.inCashOut}>
             <div className={styles.cashOutNum}>
               {sliderNum}
@@ -300,10 +887,60 @@ export const Mobile = () => {
         )}
 
         <div className={styles.caseOutButton}>
-          {currencyIndexPage.exchangeStatus === 2?(<img className={`${styles.caseOutImg}`} src={CaseOut} alt=""></img>):('')}
-          {currencyIndexPage.exchangeStatus === 3?(<img className={`${styles.caseOutImg} ${styles.caseOutImgActive}`} src={WaitImg} alt=""></img>):('')}
+          {currencyIndexPage.exchangeStatus === 3 ||
+          showExchangeButton ||
+          currencyStep === 4 ? (
+            <img
+              onClick={() => {
+                exchange();
+              }}
+              className={`${styles.caseOutImg} ${styles.caseOutImgActive}`}
+              src={CaseOutActive}
+              alt=""
+            ></img>
+          ) : (
+            ""
+          )}
+          {currencyIndexPage.exchangeStatus === 4 ? (
+            <img
+              className={`${styles.caseOutImg} ${styles.caseOutImgActive}`}
+              src={WaitImg}
+              alt=""
+            ></img>
+          ) : (
+            ""
+          )}
+          {currencyIndexPage.exchangeStatus === 1 &&
+          currencyStep !== 1 &&
+          !showExchangeButton &&
+          currencyStep !== 4 ? (
+            <img
+              onClick={() => {
+                nextActive();
+              }}
+              className={`${styles.caseOutImg} ${styles.caseOutImgActive}`}
+              src={Next}
+              alt=""
+            ></img>
+          ) : (
+            ""
+          )}
         </div>
       </div>
+      <Modal
+        closable={false}
+        maskClosable={false}
+        footer={[
+          <Button key="back" centered={true} onClick={handleOk}>
+            Setting
+          </Button>,
+        ]}
+        open={isModalOpen}
+      >
+        <div className={styles.showModalText}>
+          Please set up your email in the PunchGames APP first.
+        </div>
+      </Modal>
     </>
   );
 };

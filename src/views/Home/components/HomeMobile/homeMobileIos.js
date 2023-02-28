@@ -19,6 +19,8 @@ import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
 import HeadImg from "../../../../assets/home/headImg.png";
 
+import {completeEmail,browser} from "../../../../utils/bridge"
+
 export default class HomeMobileAn extends Component {
   state = {
     isshow: false,
@@ -161,6 +163,14 @@ export default class HomeMobileAn extends Component {
     window.location.href = "/#/userlogin";
   }
 
+  getBirdge = () => {
+    browser()
+  };
+
+  getBirdgeName = () => {
+    completeEmail()
+  };
+
   render() {
     return (
       <div className={styles.home_page}>
@@ -212,6 +222,8 @@ export default class HomeMobileAn extends Component {
             <div className={styles.logoBlock}>
               <img src={LogoText} alt="" />
             </div>
+
+           
             <div className={styles.loginButton}>
               <img className={styles.loginButtonImg} src={UserLogin} onClick={()=>{this.goUserLogin()}} alt="" />
             </div>

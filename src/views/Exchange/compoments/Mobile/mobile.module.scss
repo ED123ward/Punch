@@ -222,16 +222,27 @@
         .caseOutImg {
             width: 3.46rem;
         }
-        .caseOutImgActive{
+
+        .caseOutImgActive {
             width: 4.23rem;
         }
     }
 
     .inCashOut {
-        position: relative;    position: relative;
+        position: relative;
+        position: relative;
         width: 6.12rem;
-        margin: 0.85rem auto 0  auto;
+        margin: 0.85rem auto 0 auto;
         text-align: left;
+
+        .lineText2 {
+            font-size: 0.31rem;
+            font-family: Murecho-Medium, Murecho;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 0.31rem;
+            color: #FFFFFF;
+        }
 
         .cashOutNum {
             font-size: 0.46rem;
@@ -250,6 +261,45 @@
             line-height: 0.23rem;
         }
 
+        .cashOutInButtonBlock {
+            margin-top: 0.5rem;
+            .cashOutInButton {
+                margin-top: 0.3rem;
+                width: 6.12rem;
+                height: 0.92rem;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 0.31rem;
+                opacity: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 0.23rem;
+                font-size: 0.31rem;
+                font-weight: 500;
+                color: #FFFFFF;
+            }
+        }
+
+        .cashOutInInputBlock {
+            display: flex;
+            align-items: center;
+            .cashOutInButton {
+                margin-top: 0.3rem;
+                width: 6.12rem;
+                height: 0.92rem;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 0.31rem;
+                opacity: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 0.23rem;
+                font-size: 0.31rem;
+                font-weight: 500;
+                color: #FFFFFF;
+            }
+        }
+
         .cashOutInText {
             margin-top: 0.31rem;
             font-size: 0.27rem;
@@ -257,13 +307,205 @@
             font-weight: 500;
             color: #FFFFFF;
             line-height: 0.4rem;
-            .lineText{
+
+            .lineText {
                 display: inline-block;
             }
-            .cashOutTime{
+
+
+            .cashOutTime {
                 color: #FFF384;
             }
+
+            .timeDown {
+                margin-top: 0.3rem;
+                width: 6.12rem;
+                height: 0.92rem;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 0.31rem;
+                opacity: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 0.23rem;
+                font-size: 0.31rem;
+            }
+
+            .downTimeStyle {
+                color: #FFF384;
+            }
+
+
         }
     }
+    .inputStyle {
+        border: none;
+        width: 5.77rem;
+        height: 0.96rem;
+        background: #FFFFFF;
+        border-radius: 0.31rem;
+        opacity: 1;
+        padding: 0 0.31rem 0 0.31rem;
+        font-size: 0.31rem;
+        font-weight: bold;
+        color: #4B5879;
+        opacity: 0.5;
+        display: block;
+        font-family: Nunito-Bold, Nunito;
+        margin-top: 0.3rem;
+    }
 
+    .inputStyle:focus {
+        //获取焦点
+        outline: none;
+        opacity: 0.8;
+        font-family: Nunito-Bold, Nunito;
+        // box-shadow: 0 0 0 0.01rem #FFD24B;
+        // background: #ffffff;
+
+    }
+
+    .errorShow {
+        font-size: 0.24rem;
+        font-weight: bold;
+        color: #FF4646;
+        padding: 0.1rem 0.12rem;
+        position: absolute;
+        bottom: -0.7rem;
+        font-family: Nunito-Bold, Nunito;
+
+    }
+    .sendInput{
+      padding: 0 0.86rem 0 0.31rem !important;
+    }
+
+    .cashOutInInputBlock {
+        position: relative;
+        margin: 0 auto;
+        margin-bottom: 0.28rem;
+
+        font-family: Nunito-Bold, Nunito;
+
+        .errorShow {
+            font-size: 0.12rem;
+            font-weight: bold;
+            color: #FF4646;
+            padding: 0.1rem 0.12rem;
+            position: absolute;
+            bottom: -0.5rem;
+
+        }
+
+        .sendCodeBlock {
+            position: absolute;
+            top: 0.52rem;
+            right: 0.6rem;
+            height: 0.5rem;
+            display: flex;
+            align-items: center;
+
+            .sendCode {
+                width: 1.13rem;
+                height: 0.5rem;
+                background-image: url(../../../../assets/userLogin/codeSend.png);
+                background-repeat: no-repeat;
+                background-size: 1.13rem 0.5rem;
+                background-position: 50% 85%;
+
+                font-size: 0.12rem;
+                font-weight: bold;
+                color: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Nunito-Bold, Nunito;
+            }
+
+            .sendLoad {
+                width: 1.13rem;
+                height: 0.5rem;
+                border-radius: 0.17rem;
+                background-image: url(../../../../assets/userLogin/codeLoad.png);
+                background-size: 1.13rem 0.5rem;
+                background-position: 50%;
+
+                font-size: 0.12rem;
+                font-weight: bold;
+                color: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .sendCodeLoad {}
+
+        }
+
+        .passwordRuleBlock {
+            display: inline-block;
+            height: 1rem;
+
+            .passWordTitle {
+                font-size: 0.16rem;
+                font-weight: bold;
+                color: #FFFFFF;
+                margin-top: 0.16rem;
+            }
+
+            .passWordRuleLine {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                margin-top: 0.12rem;
+
+                .ruleIconBlock {
+                    width: 0.09rem;
+                    height: 0.07rem;
+                    font-size: 0.1rem;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    font-family: Nunito-Bold, Nunito;
+
+                    .ruleIcon {
+                        width: 0.09rem;
+                        height: 0.07rem;
+                        position: relative;
+                        top: 0.01rem;
+                    }
+                }
+
+                .ruleText {
+                    font-size: 0.1rem;
+                    font-weight: bold;
+                    color: #60FF46;
+                    margin-left: 0.08rem;
+                    font-family: Nunito-Bold, Nunito;
+                }
+
+                .ruleTextError {
+                    color: #FF4646 !important;
+                    font-family: Nunito-Bold, Nunito;
+                }
+
+            }
+        }
+
+
+
+    }
+
+    
+
+
+}
+
+.showModalText{
+    width: 5.5rem;
+    margin: 0 auto;
+    font-size: 0.27rem;
+font-family: Murecho-Medium, Murecho;
+font-weight: 500;
+color: #333333;
+line-height: 0.4rem;
 }
