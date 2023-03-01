@@ -152,7 +152,18 @@ export const Mobile = () => {
   };
 
   const showChangeActive = () => {
-    setShowChange("show");
+    if(showChange === 'hide'){
+      setTimeout(() => {
+        setShowChange("show");
+      }, 200);
+      
+    }else{
+      setTimeout(() => {
+        setShowChange("hide");
+      }, 200);
+     
+    }
+   
   };
 
   const getCurrencyConfigData = async () => {
@@ -181,9 +192,14 @@ export const Mobile = () => {
   const exchangeType = async () => {
     let info = await getExchangeType();
     console.log(info);
-    // info.data.exchangeStatus = 4;
+    info.data.exchangeStatus = 1;
     if (info.data.exchangeStatus === 1 && info.data.latestDetail !== null) {
       setCurrencyStep(2);
+      setBitmartFirstEmailValue(info.data.latestDetail.email)
+      if (userInfo.email === null) {
+        secureMailboxApp();
+        return false;
+      }
     }
     if (info.data.exchangeStatus === 4) {
       lasterCurrency(info.data);
@@ -198,14 +214,11 @@ export const Mobile = () => {
     let laseteryear = laseterTime.getFullYear();
     let lasetermonth = laseterTime.getMonth() + 1;
     let laseterday = laseterTime.getDate();
-    console.log(laseteryear);
-    console.log(lasetermonth);
-    console.log(laseterday);
+
 
     //计算倒计时
 
     let down = map.config.timeInterval + map.latestDetail.createAt - new Date();
-    console.log(down);
 
     let lasterTimeMap = {
       email: map.latestDetail.email,
@@ -218,9 +231,9 @@ export const Mobile = () => {
     lasterTimeMap.downhour = Math.floor((down / 1000 / 60 / 60) % 24);
     lasterTimeMap.downday = Math.floor(down / 1000 / 60 / 60 / 24);
 
-    console.log(lasterTimeMap);
-
     setLastesTimeMap(lasterTimeMap);
+
+
   };
 
   //判断email输入
@@ -396,10 +409,15 @@ export const Mobile = () => {
   const nextActive = () => {
     let step = currencyStep;
     step++;
+    if (userInfo.email === null) {
+      secureMailboxApp();
+      return false;
+    }
     if (step === 2) {
       setTimeout(() => {
         setCurrencyStep(step);
-        if (userInfo.email === "") {
+        console.log(userInfo.email);
+        if (userInfo.email === null) {
           secureMailboxApp();
           return false;
         }
@@ -462,6 +480,8 @@ export const Mobile = () => {
           setBitmartEmailValue(bitmartFirstEmailValue);
         }, 500);
       }, 100);
+    } else {
+      message.error("Invalid code");
     }
   };
   //兑换
@@ -487,17 +507,19 @@ export const Mobile = () => {
     console.log(data);
     try {
       let info = await initiateConversion(data);
-      setCurrencyStep(5);
-    } catch (error) {
-      
-    }
-    
+      if (info.code === 200) {
+        setTimeout(() => {
+          setCurrencyStep(5);
+        }, 500);
+      } else {
+        message.error("Invalid code");
+      }
+    } catch (error) {}
   };
 
   //获得用户信息
   const getUserInfoActive = async () => {
     let info = await getUserInfo();
-    console.log(info);
     setUserInfo(info.data);
     console.log(info.data.email);
     if (info.data.email !== "" && info.data.email !== null) {
@@ -636,17 +658,17 @@ export const Mobile = () => {
         {/* 积分不足 */}
         {currencyIndexPage.exchangeStatus === 2 ? (
           <div className={styles.showText}>
-            You need to have at least {thresholdValue} Punch Points to cash out.
+            You need to have at least {currencyIndexPage.config.minCredit} Punch Points to cash out.
           </div>
         ) : (
           <div className={styles.showText}>CONVERSION RATE MAY VARY.</div>
         )}
         {/* 48小时到账 */}
-        {currencyIndexPage.exchangeStatus === 5 ? (
+        {currencyIndexPage.exchangeStatus === 5 ||
+        currencyIndexPage.exchangeStatus === 3 ? (
           <div className={styles.inCashOut}>
             <div className={styles.cashOutNum}>
-              {sliderNum}
-              {currencyTypeName}
+              {currencyIndexPage.latestDetail.toAmount} &nbsp;{currencyIndexPage.latestDetail.toCurrency}
             </div>
             <div className={styles.cashOutInContent}>
               will be in your Bitmart account in minutes.
@@ -671,13 +693,12 @@ export const Mobile = () => {
         {currencyIndexPage.exchangeStatus === 4 ? (
           <div className={styles.inCashOut}>
             <div className={styles.cashOutNum}>
-              {sliderNum} {currencyTypeName}
+            {currencyIndexPage.latestDetail.toAmount} &nbsp;{currencyIndexPage.latestDetail.toCurrency}
             </div>
             <div className={styles.cashOutInContent}>
               was sent to your Bitmart account (
               {currencyIndexPage.latestDetail.email}) on{" "}
-              {lastesTimeMap.lasetermonth} , {lastesTimeMap.laseterday} ,{" "}
-              {lastesTimeMap.laseteryear}.
+              {lastesTimeMap.laseterday}/{lastesTimeMap.lasetermonth}/{lastesTimeMap.laseteryear}.
             </div>
             <div className={styles.cashOutInText}>
               <div className={styles.lineText}>
@@ -793,13 +814,13 @@ export const Mobile = () => {
                   {securityCodeText}
                 </div>
               </div>
-              {securityCodeErrorStatue ? (
+              {/* {securityCodeErrorStatue ? (
                 <div className={styles.errorShow}>
                   Invaild verification code
                 </div>
               ) : (
                 ""
-              )}
+              )} */}
             </div>
           </div>
         ) : (
@@ -848,13 +869,13 @@ export const Mobile = () => {
                   {bitmartCodeText}
                 </div>
               </div>
-              {bitmartCodeErrorStatue ? (
+              {/* {bitmartCodeErrorStatue ? (
                 <div className={styles.errorShow}>
                   Invaild verification code
                 </div>
               ) : (
                 ""
-              )}
+              )} */}
             </div>
           </div>
         ) : (
@@ -887,7 +908,17 @@ export const Mobile = () => {
         )}
 
         <div className={styles.caseOutButton}>
-          {currencyIndexPage.exchangeStatus === 3 ||
+        {currencyIndexPage.exchangeStatus === 3 ? (
+            <img
+              className={`${styles.caseOutImg} `}
+              src={CaseOut}
+              alt=""
+            ></img>
+          ) : (
+            ""
+          )}
+          
+          {
           showExchangeButton ||
           currencyStep === 4 ? (
             <img
